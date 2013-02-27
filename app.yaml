@@ -1,0 +1,29 @@
+application: inorgbisect
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: assets/img/favicon.ico
+  upload: assets/img/favicon\.ico
+
+- url: /html
+  static_dir: assets/html
+
+- url: /bs
+  static_dir: assets/bootstrap
+
+- url: /d3
+  static_dir: assets/d3
+
+- url: /js
+  static_dir: assets/js
+
+- url: /main
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
