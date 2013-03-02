@@ -59,7 +59,7 @@
       /* Tree Formatting */
       .tree-elem-empty {
         border-radius:3px;
-        border: 2px dashed;
+        border: 3px dashed;
         margin-top:4px;
         opacity:0.5;
         padding:0px 2px;
@@ -113,11 +113,11 @@
     <div class="container-narrow">
 
       <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+        <div class="btn-toolbar pull-right">
+          <a class="btn" href="#">Home</a>
+          <a class="btn" href="#">About</a>
+          <a class="btn" href="#">Contact</a>
+        </div>
         <h3 class="muted">Inorg Bisect <small>(beta)</small></h3>
       </div>
 
@@ -127,7 +127,7 @@
         <h1>Super Bisection!</h1>
         decisions diagrams to help your users identify the source of
         their issues</p>
-        <a class="btn btn-large btn-success" href="#">Sign up today</a>
+        <a class="btn btn-large btn-inverse" href="#">Create one Now!</a>
       </div>
 
       <hr>
@@ -147,6 +147,7 @@
       <hr>
 
       <!-- View in three separate rows -->
+      <!--       
       <div id="t-r3-new">
         <h3>Create a new Bisection</h3>
         <div class="row-fluid">
@@ -168,7 +169,7 @@
           </div>
         </div>
       </div>
-      <!-- END -->
+      -- END -->
       <hr>
       <div class="footer">
         <p>&copy; Inorg.org 2013</p>
@@ -179,7 +180,13 @@
     <!-- Le templates
     ================================================== -->
     <script type="text/template" id="tmpl-tree">
-      <button class="btn btn-small pull-right" type="submit"><i class="icon-edit"></i> Edit</button>
+      <div class="btn-toolbar">
+        <button class="btn btn-small act-edit"><i class="icon-edit"></i> Edit</button>
+        <div class="btn-group pull-right">
+          <button class="btn btn-small act-save"><i class="icon-ok"></i> Save</button>
+          <button class="cancel btn btn-small act-cancel"><i class="icon-remove"></i> Cancel</button>
+        </div>
+      </div>
       <div id={{tree.id}} class="tree">
         <h2>
           <span>{{tree.head}} </span>
@@ -228,12 +235,13 @@
     </script>
 
     <script type="text/template" id="tmpl-ntree">
+      <button class="btn btn-small pull-right"><i class="icon-edit"></i> Edit</button>
+      <!--
       <div class="btn-group pull-right" data-toggle="buttons-checkbox">
-        <button class="btn btn-small"><i class="icon-ok"></i> Save</button>
-        <button class="btn btn-small"><i class="icon-edit"></i> Edit</button>
-        <button class="btn btn-small"><i class="icon-remove"></i> Clear</button>
+        <button class="btn btn-small disabled"><i class="icon-ok"></i> Save</button>
+        <button class="btn btn-small disabled"><i class="icon-remove"></i> Cancel</button>
       </div>
-
+      -->
       <div id={{tree.id}} class="tree">
         <h2>
           <span>{{tree.head}} </span>
