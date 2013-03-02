@@ -1,6 +1,8 @@
 
 "use strict";
 
+var mytree;
+
 var desc_txt = "Data Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. for Top Root";
 
 var datat =
@@ -110,7 +112,7 @@ var datac =
        }
     };
 
-function render_rtree(id, t){
+function render_ltree(id, t){
     var tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
     $(id).append(tmpl_tree(t));
 }
@@ -120,8 +122,53 @@ function render_ntree(id, t){
     $(id).append(tmpl_ntree(t));
 }
 
+
 jQuery(document).ready(function(){
-    render_rtree("#t-tmpl-r3-test", datat);
-    render_ntree("#t-tmpl-n3-test", datac);
+    render_ltree("#t-tmpl-r3-test", datat);
+    mytree = new TreeView({el:"#t-tmpl-r3-test"});
+    //render_ntree("#t-tmpl-n3-test", datac);
     //render_rtree("#t-tmpl-r31-test", datac);
+});
+
+var TreeView = Backbone.View.extend({
+
+    events: {
+        "click .btn.act-edit": "clickEdit",
+        "click .btn.act-cancel": "clickCancel",
+        "click .btn.act-save": "clickSave",
+    },
+
+    initialize: function(){
+
+    },
+
+    clickEdit : function(e){
+        this.$(".btn.act-edit").addClass("disabled");
+        this.$(".btn.act-save").addClass("disabled");
+
+        this.$(".tree")
+            .attr("contenteditable", true)
+            .addClass("well well-small");
+
+
+    },
+
+    clickCancel: function(e){
+        this.$(".btn.act-edit").removeClass("disabled");
+
+       this.$(".tree")
+            .attr("contenteditable", false)
+            .removeClass("well well-small");
+
+    },
+
+    clickSave: function(e){
+        this.$(".btn.act-edit").removeClass("disabled");
+        this.$(".btn.act-cancel").addClass("disabled");
+        this.$(".btn.act-save").addClass("disabled");
+
+        this.$(".tree")
+            .attr("contenteditable", false)
+            .removeClass("well well-small");
+    }
 });
