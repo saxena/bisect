@@ -72,10 +72,10 @@
 
       /* Tree Formatting */
       .tree-elem {
-        text-align:center;
         border-radius:3px;
         margin-top:4px;
         padding:0px 2px;
+        text-align:center;
       }
 
       /* Tree Coloring */
@@ -101,11 +101,11 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/assets/ico/favicon.png">
   </head>
 
   <body>
@@ -131,96 +131,17 @@
       </div>
 
       <hr>
-      <div id="t-tmpl-r3-test"></div>
-      <hr>
-
-      <!-- View in nested rows -->
-      <div id="t-n3">
-        <h3>Example of Nested Bisection</h3>
-        <div class="row-fluid">
-          <div class="span12 ntree-elem tree-top">
-            <h4>Nested Tree Display</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <div class="row-fluid">
-              <div class="span6 ntree-elem tree-mid">
-                <h4>Subheading</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                <div class="row-fluid">
-                  <div class="span6 ntree-elem tree-bot">
-                    <h4>Subheading</h4>
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                  </div>
-                  <div class="span6 ntree-elem tree-bot">
-                    <h4>Subheading</h4>
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                  </div>
-                </div>
-
-              </div>
-              <div class="span6 ntree-elem tree-mid">
-                <h4>Subheading</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                <div class="row-fluid">
-                  <div class="span6 ntree-elem tree-bot">
-                    <h4>Subheading</h4>
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                  </div>
-                  <div class="span6 ntree-elem tree-bot">
-                    <h4>Subheading</h4>
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
+      <div id="t-tmpl-r3-test">
       </div>
-      <!-- END -->
 
       <hr>
+      <!-- View in nested rows -->
+      <div id="t-tmpl-n3-test">
+      </div>
 
+      <hr>
       <!-- View in three separate rows -->
-      <div id="t-r3">
-        <h3>Example of 3 Separate Rows Bisection</h3>
-        <div class="row-fluid">
-          <div class="span12 tree-elem tree-top">
-            <h4>Three Rows</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span6 tree-elem tree-mid">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-          <div class="span6 tree-elem tree-mid">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3 tree-elem tree-bot">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-          <div class="span3 tree-elem tree-bot">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-          <div class="span3 tree-elem tree-bot">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-          <div class="span3 tree-elem tree-bot">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-        </div>
+      <div id="t-tmpl-r31-test">
       </div>
       <!-- END -->
       <hr>
@@ -257,52 +178,110 @@
 
     <!-- Le templates
     ================================================== -->
-    <script type="text/template" id="tmpl-tree-rooted">
-      <div id={{tree.id}}>
-        <h2>{{tree.head}} <small>{{tree.desc}}</small></h2>
+    <script type="text/template" id="tmpl-tree">
+      <button class="btn btn-small pull-right" type="submit"><i class="icon-edit"></i> Edit</button>
+      <div id={{tree.id}} class="tree">
+        <h2>
+          <span>{{tree.head}} </span>
+          <small>{{tree.desc}}</small>
+        </h2>
 
         {{#with nodes}}
-        <div class="row-fluid">
-          <div class="span12 tree-elem tree-top">
+        <div class="row-fluid" data-height="0">
+          <div class="span12 tree-elem tree-top" data-id="n0">
             <h4>{{n0.head}}</h4>
             <p>{{n0.desc}}</p>
           </div>
         </div>
 
-        <div class="row-fluid">
-          <div class="span6 tree-elem tree-mid">
+        <div class="row-fluid" data-height="1">
+          <div class="span6 tree-elem tree-mid" data-id="n1">
             <h4>{{n1.head}}</h4>
             <p>{{n1.desc}}</p>
           </div>
-          <div class="span6 tree-elem tree-mid">
+          <div class="span6 tree-elem tree-mid" data-id="n2">
             <h4>{{n2.head}}</h4>
             <p>{{n2.desc}}</p>
           </div>
         </div>
 
-        <div class="row-fluid">
-          <div class="span3 tree-elem tree-bot">
+        <div class="row-fluid" data-height="2">
+          <div class="span3 tree-elem tree-bot" data-id="n3">
             <h4>{{n3.head}}</h4>
             <p>{{n3.desc}}</p>
           </div>
-          <div class="span3 tree-elem tree-bot">
+          <div class="span3 tree-elem tree-bot" data-id="n4">
             <h4>{{n4.head}}</h4>
             <p>{{n4.desc}}</p>
           </div>
-          <div class="span3 tree-elem tree-bot">
+          <div class="span3 tree-elem tree-bot" data-id="n5">
             <h4>{{n5.head}}</h4>
             <p>{{n5.desc}}</p>
           </div>
-          <div class="span3 tree-elem tree-bot">
+          <div class="span3 tree-elem tree-bot" data-id="n6">
             <h4>{{n6.head}}</h4>
             <p>{{n6.desc}}</p>
           </div>
         </div>
         {{/with}}
       </div>
-
     </script>
 
+    <script type="text/template" id="tmpl-ntree">
+      <div class="btn-group pull-right" data-toggle="buttons-checkbox">
+        <button class="btn btn-small"><i class="icon-ok"></i> Save</button>
+        <button class="btn btn-small"><i class="icon-edit"></i> Edit</button>
+        <button class="btn btn-small"><i class="icon-remove"></i> Clear</button>
+      </div>
+
+      <div id={{tree.id}} class="tree">
+        <h2>
+          <span>{{tree.head}} </span>
+          <small>{{tree.desc}}</small>
+        </h2>
+
+        {{#with nodes}}
+        <div class="row-fluid">
+          <div class="span12 ntree-elem tree-top" data-id="n0">
+            <h4>{{n0.head}}</h4>
+            <p>{{n0.desc}}</p>
+
+            <div class="row-fluid">
+              <div class="span6 ntree-elem tree-mid" data-id="n1">
+                <h4>{{n1.head}}</h4>
+                <p>{{n1.desc}}</p>
+                <div class="row-fluid">
+                  <div class="span6 ntree-elem tree-bot" data-id="n3">
+                    <h4>{{n3.head}}</h4>
+                    <p>{{n3.desc}}</p>
+                  </div>
+                  <div class="span6 ntree-elem tree-bot" data-id="n4">
+                    <h4>{{n4.head}}</h4>
+                    <p>{{n4.desc}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="span6 ntree-elem tree-mid" data-id="n2">
+                <h4>{{n2.head}}</h4>
+                <p>{{n2.desc}}</p>
+                <div class="row-fluid">
+                  <div class="span6 ntree-elem tree-bot" data-id="n5">
+                    <h4>{{n5.head}}</h4>
+                    <p>{{n5.desc}}</p>
+                  </div>
+                  <div class="span6 ntree-elem tree-bot" data-id="n6">
+                    <h4>{{n6.head}}</h4>
+                    <p>{{n6.desc}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/with}}
+      </div>
+    </script>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
