@@ -46,6 +46,17 @@
         margin-top: 28px;
       }
       
+      .text-left {
+        text-align: left;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .text-center {
+        text-align: center;
+      }
       /* ******************************************************************* */
 
       /* NestedTree Formatting */
@@ -56,17 +67,13 @@
         padding:0px 2px;
       }
 
-      /* Tree Formatting */
-      .tree-elem-empty {
-        border-radius:3px;
+      /* Node Formatting */
+      .node-empty {
         border: 3px dashed;
-        margin-top:4px;
-        opacity:0.5;
-        padding:0px 2px;
-        text-align:center;
+        opacity:0.9;
       }
 
-      .tree-elem-empty:hover {
+      .node-empty:hover {
         opacity:1;
       }
 
@@ -127,7 +134,7 @@
         <h1>Super Bisection!</h1>
         decisions diagrams to help your users identify the source of
         their issues</p>
-        <a class="btn btn-large btn-inverse" href="#">Create one Now!</a>
+        <a class="btn btn-large btn-success" href="#">Create one Now!</a>
       </div>
 
       <hr>
@@ -184,7 +191,7 @@
         <button class="btn btn-small act-edit"><i class="icon-edit"></i> Edit</button>
         <div class="btn-group pull-right">
           <button class="btn btn-small act-save"><i class="icon-ok"></i> Save</button>
-          <button class="cancel btn btn-small act-cancel"><i class="icon-remove"></i> Cancel</button>
+          <button class="btn btn-small act-cancel"><i class="icon-remove"></i> Cancel</button>
         </div>
       </div>
       <div id={{tree.id}} class="tree">
@@ -196,6 +203,14 @@
         {{#with nodes}}
         <div class="row-fluid" data-height="0">
           <div class="span12 tree-elem tree-top" data-id="n0">
+            <!--
+            <div class="btn-toolbar pull-right">
+              <div class="btn-group">
+                <button class="btn btn-mini"><i class="icon-plus-sign"></i></button>
+                <button class="btn btn-mini"><i class="icon-minus-sign"></i></button>
+              </div>
+            </div>
+            -->
             <h4>{{n0.head}}</h4>
             <p>{{n0.desc}}</p>
           </div>
@@ -213,23 +228,105 @@
         </div>
 
         <div class="row-fluid" data-height="2">
+
+          {{#if n3}}
           <div class="span3 tree-elem tree-bot" data-id="n3">
             <h4>{{n3.head}}</h4>
             <p>{{n3.desc}}</p>
+            <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
+          {{else}}
+          <div class="span3 tree-elem node-empty tree-bot"
+               data-id="n3" style="display:none;">
+            <h4>Edit to add question</h4>
+            <p>Edit to add a brief description</p>
+          </div>
+          {{/if}}
+
+          {{#if n4}}
           <div class="span3 tree-elem tree-bot" data-id="n4">
             <h4>{{n4.head}}</h4>
             <p>{{n4.desc}}</p>
+            <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
+          {{else}}
+          <div class="span3 tree-elem node-empty tree-bot"
+               data-id="n4" style="display:none;">
+            <h4>Edit to add question</h4>
+            <p>Edit to add a brief description</p>
+          </div>
+          {{/if}}
+
+          {{#if n5}}
           <div class="span3 tree-elem tree-bot" data-id="n5">
             <h4>{{n5.head}}</h4>
             <p>{{n5.desc}}</p>
+            <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
+          {{else}}
+          <div class="span3 tree-elem node-empty tree-bot"
+               data-id="n5" style="display:none;">
+            <h4>Edit to add question</h4>
+            <p>Edit to add a brief description</p>
+          </div>
+          {{/if}}
+
+          {{#if n6}}
           <div class="span3 tree-elem tree-bot" data-id="n6">
             <h4>{{n6.head}}</h4>
             <p>{{n6.desc}}</p>
+            <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
+          </div>
+          {{else}}
+          <div class="span3 tree-elem node-empty tree-bot"
+               data-id="n6" style="display:none;">
+            <h4>Edit to add question</h4>
+            <p>Edit to add a brief description</p>
+          </div>
+          {{/if}}
+        </div>
+
+        <!-- More Sub-Trees as needed       
+        <div>
+        <div class="row-fluid" data-height="3">
+          <div class="span12 tree-elem tree-top" data-id="n100">
+            <h4>DODO</h4>
+            <p>DODO Desc</p>
           </div>
         </div>
+
+        <div class="row-fluid" data-height="3">
+          <div class="span6 tree-elem tree-top" data-id="n101">
+            <h4>DIDI</h4>
+            <p>DIDI Desc</p>
+          </div>
+          <div class="span6 tree-elem tree-top" data-id="n101">
+            <h4>DIDI</h4>
+            <p>DIDI Desc</p>
+          </div>
+        </div>
+        </div>
+
+        <div>
+        <div class="row-fluid" data-height="3">
+          <div class="span12 tree-elem tree-top" data-id="n100">
+            <h4>DODO</h4>
+            <p>DODO Desc</p>
+          </div>
+        </div>
+
+        <div class="row-fluid" data-height="3">
+          <div class="span6 tree-elem tree-top" data-id="n101">
+            <h4>DIDI</h4>
+            <p>DIDI Desc</p>
+          </div>
+          <div class="span6 tree-elem tree-top" data-id="n101">
+            <h4>DIDI</h4>
+            <p>DIDI Desc</p>
+          </div>
+        </div>
+        </div>
+        -->
         {{/with}}
       </div>
     </script>

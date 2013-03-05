@@ -130,6 +130,10 @@ jQuery(document).ready(function(){
     //render_rtree("#t-tmpl-r31-test", datac);
 });
 
+var TreeModel = Backbone.Model.extend({
+
+});
+
 var TreeView = Backbone.View.extend({
 
     events: {
@@ -150,15 +154,20 @@ var TreeView = Backbone.View.extend({
             .attr("contenteditable", true)
             .addClass("well well-small");
 
-
+        this.$(".node-empty")
+            .show();
     },
 
     clickCancel: function(e){
         this.$(".btn.act-edit").removeClass("disabled");
+        this.$(".btn.act-cancel").addClass("disabled");
 
-       this.$(".tree")
+        this.$(".tree")
             .attr("contenteditable", false)
             .removeClass("well well-small");
+
+        this.$(".node-empty")
+            .hide();
 
     },
 
@@ -170,5 +179,9 @@ var TreeView = Backbone.View.extend({
         this.$(".tree")
             .attr("contenteditable", false)
             .removeClass("well well-small");
+
+        this.$(".node-empty")
+            .hide();
+
     }
 });
