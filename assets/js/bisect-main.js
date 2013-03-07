@@ -154,7 +154,7 @@ var TreeView = Backbone.View.extend({
             .attr("contenteditable", true)
             .addClass("well well-small");
 
-        this.$(".node-empty")
+        this.$(".on-edit")
             .show();
     },
 
@@ -166,7 +166,7 @@ var TreeView = Backbone.View.extend({
             .attr("contenteditable", false)
             .removeClass("well well-small");
 
-        this.$(".node-empty")
+        this.$(".on-edit")
             .hide();
 
     },
@@ -180,7 +180,7 @@ var TreeView = Backbone.View.extend({
             .attr("contenteditable", false)
             .removeClass("well well-small");
 
-        this.$(".node-empty")
+        this.$(".on-edit")
             .hide();
 
     }
