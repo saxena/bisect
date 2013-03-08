@@ -1,7 +1,8 @@
 
 "use strict";
 
-var mytree;
+var mytreeview;
+var mytreemodel;
 
 var desc_txt = "Data Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. for Top Root";
 
@@ -125,13 +126,18 @@ function render_ntree(id, t){
 
 jQuery(document).ready(function(){
     render_ltree("#t-tmpl-r3-test", datat);
-    mytree = new TreeView({el:"#t-tmpl-r3-test"});
+    mytreeview = new TreeView({el:"#t-tmpl-r3-test"});
+    mytreemodel = new TreeModel(datat);
     //render_ntree("#t-tmpl-n3-test", datac);
     //render_rtree("#t-tmpl-r31-test", datac);
 });
 
 var TreeModel = Backbone.Model.extend({
+    urlRoot:"/trees",
 
+    initialize: function(){
+        this.id = this.get("tree").id;
+    }
 });
 
 var TreeView = Backbone.View.extend({
