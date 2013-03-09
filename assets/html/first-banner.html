@@ -67,6 +67,10 @@
         padding:0px 2px;
       }
 
+      /* */
+      .on-edit{
+        display: none;
+      }
       /* Node Formatting */
       .node-empty {
         border: dashed 3px black;
@@ -223,7 +227,8 @@
           <div class="span6 tree-elem tree-mid" data-id="n1">
             <h4>{{n1.head}}</h4>
             <p>{{n1.desc}}</p>
-            <a class="btn btn-mini on-edit btn-link">
+            <a class="btn btn-mini on-edit btn-link"
+               data-toggle="button" contenteditable="false">
             {{#if n3 }}
             <i class="icon-minus-sign"></i>
             {{else}}
@@ -234,7 +239,8 @@
           <div class="span6 tree-elem tree-mid" data-id="n2">
             <h4>{{n2.head}}</h4>
             <p>{{n2.desc}}</p>
-            <a class="btn btn-mini on-edit btn-link">
+            <a class="btn btn-mini on-edit btn-link"
+               data-toggle="button" contenteditable="false">
             {{#if n5 }}
             <i class="icon-minus-sign"></i>
             {{else}}
@@ -253,7 +259,7 @@
             <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
           {{else}}
-          <div class="span3 tree-elem node-empty tree-bot on-edit"
+          <div class="span3 tree-elem node-empty tree-bot"
                data-id="n3" style="display:none;">
             <h4>Edit to add question</h4>
             <p>Edit to add a brief description</p>
@@ -267,7 +273,7 @@
             <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
           {{else}}
-          <div class="span3 tree-elem node-empty tree-bot on-edit"
+          <div class="span3 tree-elem node-empty tree-bot"
                data-id="n4" style="display:none;">
             <h4>Edit to add question</h4>
             <p>Edit to add a brief description</p>
@@ -281,7 +287,7 @@
             <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
           {{else}}
-          <div class="span3 tree-elem node-empty tree-bot on-edit"
+          <div class="span3 tree-elem node-empty tree-bot"
                data-id="n5" style="display:none;">
             <h4>Edit to add question</h4>
             <p>Edit to add a brief description</p>
@@ -295,7 +301,7 @@
             <!-- <a class="btn btn-mini btn-link"><i class="icon-plus-sign"></i></a> -->
           </div>
           {{else}}
-          <div class="span3 tree-elem node-empty tree-bot on-edit"
+          <div class="span3 tree-elem node-empty tree-bot"
                data-id="n6" style="display:none;">
             <h4>Edit to add question</h4>
             <p>Edit to add a brief description</p>
