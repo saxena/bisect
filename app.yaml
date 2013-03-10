@@ -12,6 +12,9 @@ handlers:
 - url: /html
   static_dir: assets/html
 
+- url: /img
+  static_dir: assets/img
+
 - url: /bs
   static_dir: assets/bootstrap
 
