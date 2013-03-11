@@ -152,11 +152,12 @@
 
       <div class="masthead">
         <div class="btn-toolbar pull-right">
-          <a class="btn" href="#">Home</a>
-          <a class="btn" href="#">About</a>
           <a class="btn" href="#">Contact</a>
         </div>
-        <h3 class="muted">Inorg Bisect <small>(beta)</small></h3>
+        <div class="btn-toolbar pull-left">
+          <a class="btn" href="#">About</a>
+        </div>
+        <h3 class="text-center">Inorg Bisect <small class="muted">(beta)</small></h3>
       </div>
 
       <hr>
@@ -222,11 +223,12 @@
         <button class="btn btn-small act-edit"><i class="icon-edit"></i> Edit</button>
         <div class="btn-group pull-right">
           <button class="btn btn-small act-save"><i class="icon-ok"></i> Save</button>
-          <button class="btn btn-small act-cancel"><i class="icon-remove"></i> Cancel</button>
+          <button class="btn btn-small act-cancel"><i class="icon-ban-circle"></i> Cancel</button>
         </div>
       </div>
       <div id={{tree.id}} class="tree">
         <h2>
+          <span class="label label-warning pull-right">Modified</span>
           <span>{{tree.head}} </span>
           <small>{{tree.desc}}</small>
         </h2>
@@ -234,14 +236,6 @@
         {{#with nodes}}
         <div class="row-fluid" data-height="0">
           <div class="span12 tree-elem tree-top" data-id={{n0.id}}>
-            <!--
-            <div class="btn-toolbar pull-right">
-              <div class="btn-group">
-                <button class="btn btn-mini"><i class="icon-plus-sign"></i></button>
-                <button class="btn btn-mini"><i class="icon-minus-sign"></i></button>
-              </div>
-            </div>
-            -->
             <h4>{{n0.head}}</h4>
             <p>{{n0.desc}}</p>
           </div>
@@ -249,6 +243,7 @@
 
         <div class="row-fluid" data-height="1">
           <div class="span6 tree-elem tree-mid" data-id={{n1.id}}>
+            <span class="label label-warning pull-right">Modified</span>
             <h4>{{n1.head}}</h4>
             <p>{{n1.desc}}</p>
             <span class="on-edit">
@@ -266,6 +261,7 @@
             </span>
           </div>
           <div class="span6 tree-elem tree-mid" data-id={{n2.id}}>
+            <span class="label label-warning pull-right"></span>
             <h4>{{n2.head}}</h4>
             <p>{{n2.desc}}</p>
             <span class="on-edit">
