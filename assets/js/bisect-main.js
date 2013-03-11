@@ -1,4 +1,3 @@
-
 "use strict";
 
 var mytreeview;
@@ -146,10 +145,26 @@ var TreeView = Backbone.View.extend({
         "click .btn.act-edit": "clickEdit",
         "click .btn.act-cancel": "clickCancel",
         "click .btn.act-save": "clickSave",
+
+        "click .btn.on-add": "clickNodeAdd",
+        "click .btn.on-del": "clickNodeDel"
     },
 
     initialize: function(){
 
+    },
+
+    clickNodeGetParent: function(sel){
+        var np =  Number(sel.parent().parent().data("id")[1]);
+        return
+    },
+
+    clickNodeAdd : function(e) {
+        console.log("NodeAdd");
+    },
+
+    clickNodeDel : function(e) {
+        console.log("NodeDel");
     },
 
     clickEdit : function(e){
@@ -158,7 +173,7 @@ var TreeView = Backbone.View.extend({
 
         this.$(".tree")
             .attr("contenteditable", true)
-            .addClass("well well-small");
+            .addClass("well");
 
         this.$(".on-edit")
             .show();
@@ -170,7 +185,7 @@ var TreeView = Backbone.View.extend({
 
         this.$(".tree")
             .attr("contenteditable", false)
-            .removeClass("well well-small");
+            .removeClass("well");
 
         this.$(".on-edit")
             .hide();
@@ -184,10 +199,12 @@ var TreeView = Backbone.View.extend({
 
         this.$(".tree")
             .attr("contenteditable", false)
-            .removeClass("well well-small");
+            .removeClass("well");
 
         this.$(".on-edit")
             .hide();
 
     }
+
+
 });

@@ -64,7 +64,7 @@
         text-align:center;
         border-radius:3px;
         margin:4px 0px;
-        padding:0px 2px;
+        padding:2px 2px;
       }
 
       /* */
@@ -84,12 +84,12 @@
 
       /* Tree Formatting */
       .tree-elem {
-        -moz-box-shadow: 6px 6px 6px #1c1c1c;
-        -webkit-box-shadow: 6px 6px 6px #1c1c1c;
-        box-shadow: 6px 6px 6px #1c1c1c;
+        -moz-box-shadow: 3px 3px 3px #1c1c1c;
+        -webkit-box-shadow: 3px 3px 3px #1c1c1c;
+        box-shadow: 3px 3px 3px #1c1c1c;
         border-radius:3px;
         margin-top:4px;
-        padding:0px 2px;
+        padding:2px 2px;
         text-align:center;
       }
 
@@ -168,7 +168,7 @@
 
       <div class="jumbotron">
         <h1>Super Bisection!</h1>
-        decisions diagrams to help your users identify the source of
+        <p>decisions diagrams to help your users identify the source of
         their issues</p>
         <a class="btn btn-large btn-success" href="#">Create one Now!</a>
       </div>
@@ -212,7 +212,7 @@
           </div>
         </div>
       </div>
-      -- END -->
+      -->
       <hr>
       <div class="footer">
         <p>&copy; Inorg.org 2013</p>
@@ -256,26 +256,24 @@
           <div class="span6 tree-elem tree-mid" data-id="n1">
             <h4>{{n1.head}}</h4>
             <p>{{n1.desc}}</p>
-            <a class="btn btn-mini on-edit btn-link"
-               data-toggle="button" contenteditable="false">
-            {{#if n3 }}
-            <i class="icon-minus-sign"></i>
+            <span class="on-edit">
+            {{#if n3}}
+            <button class="btn btn-mini on-del" contenteditable="false"><i class="icon-minus-sign"></i> Delete</button>
             {{else}}
-            <i class="icon-plus-sign"></i>
+            <button class="btn btn-mini on-add" contenteditable="false"><i class="icon-plus-sign"></i> Add</button>
             {{/if}}
-            </a>
+            </span>
           </div>
           <div class="span6 tree-elem tree-mid" data-id="n2">
             <h4>{{n2.head}}</h4>
             <p>{{n2.desc}}</p>
-            <a class="btn btn-mini on-edit btn-link"
-               data-toggle="button" contenteditable="false">
-            {{#if n5 }}
-            <i class="icon-minus-sign"></i>
+            <span class="on-edit">
+            {{#if n5}}
+            <button class="btn btn-mini on-del" contenteditable="false"><i class="icon-minus-sign"></i> Delete</button>
             {{else}}
-            <i class="icon-plus-sign"></i>
+            <button class="btn btn-mini on-add" contenteditable="false"><i class="icon-plus-sign"></i> Add</button>
             {{/if}}
-            </a>
+            </span>
           </div>
         </div>
 
