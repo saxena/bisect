@@ -146,25 +146,39 @@ var TreeView = Backbone.View.extend({
         "click .btn.act-cancel": "clickCancel",
         "click .btn.act-save": "clickSave",
 
-        "click .btn.on-add": "clickNodeAdd",
-        "click .btn.on-del": "clickNodeDel"
+        "click .btn.node-add": "clickNodeAdd",
+        "click .btn.node-rem": "clickNodeDel"
     },
 
     initialize: function(){
 
     },
 
-    clickNodeGetParent: function(sel){
-        var np =  Number(sel.parent().parent().data("id")[1]);
-        return
+    clickNodeGetChild: function(sel){
+        var np =  Number(sel.parent().parent().data("id"));
+        return [ 2*np+1, 2*np+2 ];
+    },
+
+    clickNodeVisToggle : function(e) {
+        var c = this.clickNodeGetChild($(e.target));
+        var sel_c0 = $("div.tree-elem[data-id="+c[0]+"]");
+        var sel_c1 = $("div.tree-elem[data-id="+c[1]+"]");
+        sel_c0.toggleClass("tree-elem-empty");
+        sel_c1.toggleClass("tree-elem-empty");
+        console.log("NodeVisToggle " + c);
+        //is visible
+        return sel_c0.hasClass("tree-elem-empty") ? 0 : 1;
+
+
     },
 
     clickNodeAdd : function(e) {
-        console.log("NodeAdd");
+        var vis = this.clickNodeVisToggle(e);
+        $(e.target).button( vis ? 'rem':'add');
     },
 
     clickNodeDel : function(e) {
-        console.log("NodeDel");
+        this.clickNodeAdd(e);
     },
 
     clickEdit : function(e){
