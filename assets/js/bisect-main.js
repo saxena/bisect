@@ -166,10 +166,7 @@ var TreeView = Backbone.View.extend({
         sel_c0.toggleClass("tree-elem-empty");
         sel_c1.toggleClass("tree-elem-empty");
         console.log("NodeVisToggle " + c);
-        //is visible
-        return sel_c0.hasClass("tree-elem-empty") ? 0 : 1;
-
-
+        return sel_c0.hasClass("tree-elem-empty") ? 0 : 1;//is visible?
     },
 
     clickNodeAdd : function(e) {
@@ -185,24 +182,20 @@ var TreeView = Backbone.View.extend({
         this.$(".btn.act-edit").addClass("disabled");
         this.$(".btn.act-save").addClass("disabled");
 
-        this.$(".tree")
-            .attr("contenteditable", true)
-            .addClass("well");
+        this.$(".tree").addClass("well");
+        this.$(".node-head, .node-desc").attr("contenteditable", true);
 
-        this.$(".on-edit")
-            .show();
+        this.$(".on-edit").show();
     },
 
     clickCancel: function(e){
         this.$(".btn.act-edit").removeClass("disabled");
         this.$(".btn.act-cancel").addClass("disabled");
 
-        this.$(".tree")
-            .attr("contenteditable", false)
-            .removeClass("well");
+        this.$(".tree").removeClass("well");
+        this.$(".node-head, .node-desc").attr("contenteditable", false);
 
-        this.$(".on-edit")
-            .hide();
+        this.$(".on-edit").hide();
 
     },
 
@@ -211,12 +204,10 @@ var TreeView = Backbone.View.extend({
         this.$(".btn.act-cancel").addClass("disabled");
         this.$(".btn.act-save").addClass("disabled");
 
-        this.$(".tree")
-            .attr("contenteditable", false)
-            .removeClass("well");
+        this.$(".tree").removeClass("well");
+        this.$(".node-head, .node-desc").attr("contenteditable", false);
 
-        this.$(".on-edit")
-            .hide();
+        this.$(".on-edit").hide();
 
     }
 
