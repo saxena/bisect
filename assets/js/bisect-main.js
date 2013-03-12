@@ -147,11 +147,21 @@ var TreeView = Backbone.View.extend({
         "click .btn.act-save": "clickSave",
 
         "click .btn.node-add": "clickNodeAdd",
-        "click .btn.node-rem": "clickNodeDel"
+        "click .btn.node-rem": "clickNodeDel",
+
+        "keydown .tree" : "editHandler",
     },
 
     initialize: function(){
 
+    },
+
+    editHandler: function(e){
+        //var esc = e.which === 27;
+        //var ret = e.which === 13;
+        var telem = $(e.target).parent();
+        telem.children("span.label:first-child").text("edited");
+        console.log(e.target.nodeName);
     },
 
     clickNodeGetChild: function(sel){
