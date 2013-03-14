@@ -240,17 +240,16 @@
             <h4 class="node-head">{{n1.head}}</h4>
             <p class="node-desc">{{n1.desc}}</p>
             <span class="on-edit">
-            {{#if n3}}
-            <button class="btn btn-mini node-rem"
-                    data-add-text='<i class="icon-plus-sign"></i> '
-                    data-rem-text='<i class="icon-minus-sign"></i> '
-                    ><i class="icon-minus-sign"></i> </button>
-            {{else}}
-            <button class="btn btn-mini node-add"
-                    data-add-text='<i class="icon-plus-sign"></i> '
-                    data-rem-text='<i class="icon-minus-sign"></i> '
-                    ><i class="icon-plus-sign"></i> </button>
-            {{/if}}
+              <button class="btn btn-mini node-modify"
+                      data-add-text='<i class="icon-plus-sign"></i> '
+                      data-rem-text='<i class="icon-minus-sign"></i> '
+                      >
+                {{#if n3}}
+                <i class="icon-minus-sign"></i>
+                {{else}}
+                <i class="icon-plus-sign"></i>
+                {{/if}}
+              </button>
             </span>
           </div>
           <div class="span6 tree-elem tree-mid" data-id={{n2.id}}>
@@ -258,17 +257,16 @@
             <h4 class="node-head">{{n2.head}}</h4>
             <p class="node-desc">{{n2.desc}}</p>
             <span class="on-edit">
-            {{#if n5}}
-            <button class="btn btn-mini node-rem"
-                    data-add-text='<i class="icon-plus-sign"></i> '
-                    data-rem-text='<i class="icon-minus-sign"></i> '
-                    ><i class="icon-minus-sign"></i> </button>
-            {{else}}
-            <button class="btn btn-mini node-add"
-                    data-add-text='<i class="icon-plus-sign"></i> '
-                    data-rem-text='<i class="icon-minus-sign"></i> '
-                    ><i class="icon-plus-sign"></i> </button>
-            {{/if}}
+              <button class="btn btn-mini node-modify"
+                      data-add-text='<i class="icon-plus-sign"></i> '
+                      data-rem-text='<i class="icon-minus-sign"></i> '
+                      >
+                {{#if n5}}
+                <i class="icon-minus-sign"></i>
+                {{else}}
+                <i class="icon-plus-sign"></i>
+                {{/if}}
+              </button>
             </span>
           </div>
         </div>

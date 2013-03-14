@@ -146,8 +146,7 @@ var TreeView = Backbone.View.extend({
         "click .btn.act-cancel": "clickCancel",
         "click .btn.act-save": "clickSave",
 
-        "click .btn.node-add": "clickNodeAdd",
-        "click .btn.node-rem": "clickNodeDel",
+        "click .btn.node-modify": "clickNodeModify",
 
         "keydown .tree" : "editHandler",
     },
@@ -191,13 +190,9 @@ var TreeView = Backbone.View.extend({
         return vis;
     },
 
-    clickNodeAdd : function(e) {
+    clickNodeModify : function(e) {
         var vis = this.NodeVisToggle(e);
         $(e.target).button( vis ? 'rem':'add');
-    },
-
-    clickNodeDel : function(e) {
-        this.clickNodeAdd(e);
     },
 
     clickEdit : function(e){
