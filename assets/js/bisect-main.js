@@ -153,34 +153,46 @@ var TreeView = Backbone.View.extend({
     },
 
     initialize: function(){
-
+        this.EditList = {};
+        this.VisList = {};
     },
 
     editHandler: function(e){
         //var esc = e.which === 27;
         //var ret = e.which === 13;
-        var telem = $(e.target).parent();
-        telem.children("span.label:first-child").text("edited");
+        var tree_elem = $(e.target).parent();
+        //Mark tree-elem as edited
+        this.EditList[tree_elem.data("id")] = true;
+        //Show user it has changed
+        tree_elem.children("span.label:first-child").text("edited");
         console.log(e.target.nodeName);
     },
 
-    clickNodeGetChild: function(sel){
-        var np =  Number(sel.parent().parent().data("id"));
+    NodeGetChild: function(target){
+        var np =  Number($(target).parent().parent().data("id"));
         return [ 2*np+1, 2*np+2 ];
     },
 
-    clickNodeVisToggle : function(e) {
-        var c = this.clickNodeGetChild($(e.target));
+    NodeVisToggle : function(e) {
+        //TODO: Provide data-pid in child nodes for jquery selection generation
+        var vis;
+        var c = this.NodeGetChild(e.target);
         var sel_c0 = $("div.tree-elem[data-id="+c[0]+"]");
         var sel_c1 = $("div.tree-elem[data-id="+c[1]+"]");
         sel_c0.toggleClass("tree-elem-empty");
         sel_c1.toggleClass("tree-elem-empty");
+        vis = !sel_c0.hasClass("tree-elem-empty");
+        this.VisList[c[0]] = vis;
+        this.VisList[c[1]] = vis;
+        sel_c0.children(".node-head, .node-desc").attr("contenteditable", vis);
+        sel_c1.children(".node-head, .node-desc").attr("contenteditable", vis);
+        //TODO: Toggle +/- button on children
         console.log("NodeVisToggle " + c);
-        return sel_c0.hasClass("tree-elem-empty") ? 0 : 1;//is visible?
+        return vis;
     },
 
     clickNodeAdd : function(e) {
-        var vis = this.clickNodeVisToggle(e);
+        var vis = this.NodeVisToggle(e);
         $(e.target).button( vis ? 'rem':'add');
     },
 
@@ -207,6 +219,7 @@ var TreeView = Backbone.View.extend({
 
         this.$(".on-edit").hide();
 
+        //TODO: 1. Revert changed node-* based on EditList
     },
 
     clickSave: function(e){

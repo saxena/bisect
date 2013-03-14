@@ -75,6 +75,7 @@
       /* Node Formatting */
       .tree-elem-empty {
         opacity:0;
+        cursor:default;
       }
 
       /* Tree Formatting */
@@ -193,17 +194,20 @@
     <script type="text/template" id="tmpl-tree">
 
       <div class="btn-toolbar">
-        <button class="btn btn-small act-edit"><i class="icon-edit"></i> Edit</button>
+        <button class="btn btn-small
+        act-edit"><i class="icon-edit"></i> Edit Tree</button>
         <div class="btn-group pull-right">
-          <button class="btn btn-small act-save"><i class="icon-ok"></i> Save</button>
-          <button class="btn btn-small act-cancel"><i class="icon-remove"></i> Revert</button>
+          <button class="btn btn-small
+          act-save"><i class="icon-ok"></i> Save Changes</button>
+          <button class="btn btn-small
+          act-cancel"><i class="icon-remove"></i> Revert Changes</button>
         </div>
       </div>
       <p class="on-edit text-success">
         <em>Select fields in decision tree and 'tap' or 'click' to edit them</em>
       </p>
 
-      <div id={{tree.id}} class="tree">
+      <div id={{tree.id}} class="tree" data-id=-1>
         <span class="label label-info pull-right"></span>
         <h2 class="node-head">{{tree.head}}</h2>
         <p class="node-desc">{{tree.desc}}</p>
@@ -238,14 +242,14 @@
             <span class="on-edit">
             {{#if n3}}
             <button class="btn btn-mini node-rem"
-                    data-add-text='<i class="icon-plus-sign"></i> Add'
-                    data-rem-text='<i class="icon-minus-sign"></i> Remove'
-                    ><i class="icon-minus-sign"></i> Remove</button>
+                    data-add-text='<i class="icon-plus-sign"></i> '
+                    data-rem-text='<i class="icon-minus-sign"></i> '
+                    ><i class="icon-minus-sign"></i> </button>
             {{else}}
             <button class="btn btn-mini node-add"
-                    data-add-text='<i class="icon-plus-sign"></i> Add'
-                    data-rem-text='<i class="icon-minus-sign"></i> Remove'
-                    ><i class="icon-plus-sign"></i> Add</button>
+                    data-add-text='<i class="icon-plus-sign"></i> '
+                    data-rem-text='<i class="icon-minus-sign"></i> '
+                    ><i class="icon-plus-sign"></i> </button>
             {{/if}}
             </span>
           </div>
@@ -256,14 +260,14 @@
             <span class="on-edit">
             {{#if n5}}
             <button class="btn btn-mini node-rem"
-                    data-add-text='<i class="icon-plus-sign"></i> Add'
-                    data-rem-text='<i class="icon-minus-sign"></i> Remove'
-                    ><i class="icon-minus-sign"></i> Remove</button>
+                    data-add-text='<i class="icon-plus-sign"></i> '
+                    data-rem-text='<i class="icon-minus-sign"></i> '
+                    ><i class="icon-minus-sign"></i> </button>
             {{else}}
             <button class="btn btn-mini node-add"
-                    data-add-text='<i class="icon-plus-sign"></i> Add'
-                    data-rem-text='<i class="icon-minus-sign"></i> Remove'
-                    ><i class="icon-plus-sign"></i> Add</button>
+                    data-add-text='<i class="icon-plus-sign"></i> '
+                    data-rem-text='<i class="icon-minus-sign"></i> '
+                    ><i class="icon-plus-sign"></i> </button>
             {{/if}}
             </span>
           </div>
