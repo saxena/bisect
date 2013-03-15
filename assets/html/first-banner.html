@@ -146,18 +146,6 @@
       <div id="t-tmpl-r3-test">
       </div>
 
-      <hr>
-      <!-- View in nested rows -->
-      <div id="t-tmpl-n3-test">
-      </div>
-
-      <hr>
-      <!-- View in three separate rows -->
-      <div id="t-tmpl-r31-test">
-      </div>
-      <!-- END -->
-      <hr>
-
       <!-- View in three separate rows -->
       <!--
       <div id="t-r3-new">
@@ -242,8 +230,7 @@
             <span class="on-edit">
               <button class="btn btn-mini node-modify"
                       data-add-text='<i class="icon-plus-sign"></i> Add'
-                      data-rem-text='<i class="icon-minus-sign"></i> Delete'
-                      >
+                      data-rem-text='<i class="icon-minus-sign"></i> Delete'>
                 {{#if n3}}
                 <i class="icon-minus-sign"></i> Delete
                 {{else}}
@@ -259,8 +246,7 @@
             <span class="on-edit">
               <button class="btn btn-mini node-modify"
                       data-add-text='<i class="icon-plus-sign"></i> Add'
-                      data-rem-text='<i class="icon-minus-sign"></i> Delete'
-                      >
+                      data-rem-text='<i class="icon-minus-sign"></i> Delete'>
                 {{#if n5}}
                 <i class="icon-minus-sign"></i> Delete
                 {{else}}
@@ -371,56 +357,32 @@
       </div>
     </script>
 
-    <script type="text/template" id="tmpl-ntree">
-      <div id={{tree.id}} class="tree">
-        <h2>
-          <span>{{tree.head}} </span>
-          <small>{{tree.desc}}</small>
-        </h2>
-
-        {{#with nodes}}
-        <div class="row-fluid">
-          <div class="span12 ntree-elem tree-top" data-id="n0">
-            <h4>{{n0.head}}</h4>
-            <p>{{n0.desc}}</p>
-
-            <div class="row-fluid">
-              <div class="span6 ntree-elem tree-mid" data-id="n1">
-                <h4>{{n1.head}}</h4>
-                <p>{{n1.desc}}</p>
-                <div class="row-fluid">
-                  <div class="span6 ntree-elem tree-bot" data-id="n3">
-                    <h4>{{n3.head}}</h4>
-                    <p>{{n3.desc}}</p>
-                  </div>
-                  <div class="span6 ntree-elem tree-bot" data-id="n4">
-                    <h4>{{n4.head}}</h4>
-                    <p>{{n4.desc}}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="span6 ntree-elem tree-mid" data-id="n2">
-                <h4>{{n2.head}}</h4>
-                <p>{{n2.desc}}</p>
-                <div class="row-fluid">
-                  <div class="span6 ntree-elem tree-bot" data-id="n5">
-                    <h4>{{n5.head}}</h4>
-                    <p>{{n5.desc}}</p>
-                  </div>
-                  <div class="span6 ntree-elem tree-bot" data-id="n6">
-                    <h4>{{n6.head}}</h4>
-                    <p>{{n6.desc}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <script type="text/template" id="tmpl-tree1">
+      <div class="btn-toolbar">
+        <button class="btn btn-small act-edit"><i class="icon-edit"></i> Edit Tree</button>
+        <div class="btn-group pull-right">
+          <button class="btn btn-small act-save"><i class="icon-ok"></i> Save Changes</button>
+          <button class="btn btn-small act-cancel"><i class="icon-remove"></i> Revert Changes</button>
         </div>
-        {{/with}}
       </div>
-    </script>
-    <!-- Le javascript
+      <p class="on-edit text-success">
+        <em>Select fields in decision tree and 'tap' or 'click' to edit them</em>
+      </p>
+      
+      <div id={{tree.id}} class="tree" data-id=-1>
+        <span class="label label-info pull-right"></span>
+        <h2 class="node-head">{{tree.head}}</h2>
+        <p class="node-desc">{{tree.desc}}</p>
+      </div>
+
+      {{! For each Row  }}
+      {{! For each Node }}
+
+
+</script>
+
+
+   <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/js/jquery.js"></script>
