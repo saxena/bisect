@@ -124,9 +124,9 @@ function render_ntree(id, t){
 
 
 jQuery(document).ready(function(){
-    render_ltree("#t-tmpl-r3-test", datat);
-    mytreeview = new TreeView({el:"#t-tmpl-r3-test"});
     mytreemodel = new TreeModel(datat);
+    mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
+
     //render_ntree("#t-tmpl-n3-test", datac);
     //render_rtree("#t-tmpl-r31-test", datac);
 });
@@ -152,11 +152,19 @@ var TreeView = Backbone.View.extend({
     },
 
     initialize: function(){
+        this.tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
         this.EditList = {};
         this.VisList = {};
+
+        this.render();
     },
 
-    editHandler: function(e){
+    render: function(){
+        this.$el.html(this.tmpl_tree(this.model.attributes));
+        return this;
+    },
+
+   editHandler: function(e){
         //var esc = e.which === 27;
         //var ret = e.which === 13;
         var tree_elem = $(e.target).parent();
