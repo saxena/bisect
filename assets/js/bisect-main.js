@@ -112,23 +112,16 @@ var datac =
        }
     };
 
-function render_ltree(id, t){
-    var tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
-    $(id).append(tmpl_tree(t));
-}
-
+//render_ntree("#t-tmpl-n3-test", datac);
 function render_ntree(id, t){
     var tmpl_ntree = Handlebars.compile($("#tmpl-ntree").html());
     $(id).append(tmpl_ntree(t));
 }
 
-
 jQuery(document).ready(function(){
     mytreemodel = new TreeModel(datat);
     mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
 
-    //render_ntree("#t-tmpl-n3-test", datac);
-    //render_rtree("#t-tmpl-r31-test", datac);
 });
 
 var TreeModel = Backbone.Model.extend({
@@ -153,6 +146,7 @@ var TreeView = Backbone.View.extend({
 
     initialize: function(){
         this.tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
+        this.tmpl_node = Handlebars.compile($("#tmpl-node").html());
         this.EditList = {};
         this.VisList = {};
 
@@ -164,7 +158,11 @@ var TreeView = Backbone.View.extend({
         return this;
     },
 
-   editHandler: function(e){
+    render_node: function(node){
+
+    },
+
+    editHandler: function(e){
         //var esc = e.which === 27;
         //var ret = e.which === 13;
         var tree_elem = $(e.target).parent();
@@ -203,36 +201,38 @@ var TreeView = Backbone.View.extend({
         $(e.target).button( vis ? 'rem':'add');
     },
 
+    toggleToolbar : function(enable){
+        this.$(".btn-toolbar .btn")
+            .toggleClass("disabled")
+            .attr('disabled', function(i,val){
+                if (val)
+                    $(this).removeAttr('disabled')
+                else
+                    return 'disabled';
+            });
+    },
+
     clickEdit : function(e){
-        this.$(".btn.act-edit").addClass("disabled");
-        this.$(".btn.act-save").addClass("disabled");
+        this.toggleToolbar();
 
         this.$(".tree").addClass("well");
         this.$(".node-head, .node-desc").attr("contenteditable", true);
-
         this.$(".on-edit").show();
     },
 
     clickCancel: function(e){
-        this.$(".btn.act-edit").removeClass("disabled");
-        this.$(".btn.act-cancel").addClass("disabled");
+        this.toggleToolbar();
 
-        this.$(".tree").removeClass("well");
-        this.$(".node-head, .node-desc").attr("contenteditable", false);
-
-        this.$(".on-edit").hide();
-
-        //TODO: 1. Revert changed node-* based on EditList
+        this.render();
+        delete this.VisList;
+        delete this.EditList;
     },
 
     clickSave: function(e){
-        this.$(".btn.act-edit").removeClass("disabled");
-        this.$(".btn.act-cancel").addClass("disabled");
-        this.$(".btn.act-save").addClass("disabled");
+        this.toggleToolbar();
 
         this.$(".tree").removeClass("well");
         this.$(".node-head, .node-desc").attr("contenteditable", false);
-
         this.$(".on-edit").hide();
 
     }

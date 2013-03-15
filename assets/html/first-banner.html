@@ -185,10 +185,10 @@
         <button class="btn btn-small
         act-edit"><i class="icon-edit"></i> Edit Tree</button>
         <div class="btn-group pull-right">
-          <button class="btn btn-small
-          act-save"><i class="icon-ok"></i> Save Changes</button>
-          <button class="btn btn-small
-          act-cancel"><i class="icon-remove"></i> Revert Changes</button>
+          <button class="btn btn-small disabled
+          act-save" disabled="disabled"><i class="icon-ok"></i> Save Changes</button>
+          <button class="btn btn-small disabled
+          act-cancel" disabled="disabled"><i class="icon-remove"></i> Revert Changes</button>
         </div>
       </div>
       <p class="on-edit text-success">
@@ -378,9 +378,28 @@
       {{! For each Row  }}
       {{! For each Node }}
 
+    </script>
 
-</script>
+    <script type="text/template" id="tmpl-node">
 
+      <div class="{{n.span}} {{n.level}} {{n.elem}}" data-id={{n.id}}>
+        <span class="label label-info pull-right"></span>
+        <h4 class="node-head">{{n.head}}</h4>
+        <p class="node-desc">{{n.desc}}</p>
+        <span class="on-edit">
+          <button class="btn btn-mini node-modify"
+                  data-add-text='<i class="icon-plus-sign"></i> Add'
+                  data-rem-text='<i class="icon-minus-sign"></i> Delete'>
+            {{#if n.child0}}
+            <i class="icon-minus-sign"></i> Delete
+            {{else}}
+            <i class="icon-plus-sign"></i> Add
+            {{/if}}
+          </button>
+        </span>
+      </div>
+
+    </script>
 
    <!-- Le javascript
     ================================================== -->
