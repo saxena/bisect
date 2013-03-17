@@ -146,7 +146,7 @@ var TreeView = Backbone.View.extend({
 
     initialize: function(){
         this.tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
-        this.tmpl_node = Handlebars.compile($("#tmpl-node").html());
+        //this.tmpl_node = Handlebars.compile($("#tmpl-node").html());
         this.EditList = {};
         this.VisList = {};
 
@@ -210,12 +210,16 @@ var TreeView = Backbone.View.extend({
             });
     },
 
+    toggleTreeEdit : function(enable){
+        this.$(".tree").toggleClass("well");
+        this.$(".on-edit").toggle();
+        this.$(".node-head, .node-desc").attr("contenteditable", enable);
+        if (!enable) this.$("span.label").text("");
+    },
+
     clickEdit : function(e){
         this.toggleToolbar();
-
-        this.$(".tree").addClass("well");
-        this.$(".node-head, .node-desc").attr("contenteditable", true);
-        this.$(".on-edit").show();
+        this.toggleTreeEdit(true);
     },
 
     clickCancel: function(e){
@@ -227,41 +231,35 @@ var TreeView = Backbone.View.extend({
     },
 
     clickSave: function(e){
-        var del_nodes = [];
-        var vis_nodes = [];
-        var edit_nodes = [];
-
         this.toggleToolbar();
+        this.toggleTreeEdit(false);
 
-        this.$(".tree").removeClass("well");
-        this.$(".node-head, .node-desc").attr("contenteditable", false);
-        this.$(".on-edit").hide();
-
-        if(!_.every(this.EditList,_.identity))
+      if(!_.every(this.EditList,_.identity))
             console.log("false in EditList: ");
 
         console.log(this.VisList);
         console.log(this.EditList);
 
-        del_nodes = _.keys(_.reject(this.VisList, _.identity));
-        vis_nodes = _.keys(_.filter(this.VisList, _.identity));
-        //Remove deleted Node from EditList
-        edit_nodes = _.difference(_.keys(this.EditList), del_nodes);
-
-        console.log(del_nodes);
-        console.log(vis_nodes);
-        console.log(edit_nodes);
-        /*
-        _.each(edit_nodes, function(e){
-            this.model.unset(e, {silent:true});
+        _.each(this.VisList, function(v,k){
+            if(_.has(this.EditList, k)) delete this.EditList[k];
+            if(v){
+                console.log("set node :"+k)
+                //this.model.set(this.elem2node(k), {silent:true});
+            }else{
+                console.log("del node :"+k)
+                //this.model.unset(k, {silent:true});
+            }
         }, this);
 
-        //Update Edited Nodes
-        edit_nodes = _.union(edit_nodes, vis_nodes);
-        _.each(edit_nodes, function(e){
-            this.model.set(this.elem2node(e), {silent:true});
+        console.log(this.EditList);
+
+        _.each(this.EditList, function(v,k){
+            console.log("set node :"+k)
+            //this.model.set(this.elem2node(k), {silent:true});
         }, this);
-        */
+
+        delete this.VisList;
+        delete this.EditList;
     }
 
 });
