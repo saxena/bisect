@@ -166,39 +166,37 @@ var TreeView = Backbone.View.extend({
         //var esc = e.which === 27;
         //var ret = e.which === 13;
         var tree_elem = $(e.target).parent();
+        var id = tree_elem.data("id");
         //Mark tree-elem as edited
-        this.EditList[tree_elem.data("id")] = true;
+        this.EditList[id] = true;
         //Show user it has changed
         tree_elem.children("span.label:first-child").text("edited");
-        console.log(e.target.nodeName);
+        console.log("EditNode :"+id);
     },
 
     NodeGetChild: function(target){
-        var np =  Number($(target).parent().parent().data("id"));
+        var np =  Number(target.parent().parent().data("id"));
+        if(isNaN(np)) throw "NaN";
         return [ 2*np+1, 2*np+2 ];
     },
 
     NodeVisToggle : function(e) {
         //TODO: Provide data-pid in child nodes for jquery selection generation
         var vis;
-        var c = this.NodeGetChild(e.target);
-        var sel_c0 = $("div.tree-elem[data-id="+c[0]+"]");
-        var sel_c1 = $("div.tree-elem[data-id="+c[1]+"]");
+        var sel_c0 = $("div.tree-elem[data-id="+e+"]");
         sel_c0.toggleClass("tree-elem-empty");
-        sel_c1.toggleClass("tree-elem-empty");
         vis = !sel_c0.hasClass("tree-elem-empty");
-        this.VisList[c[0]] = vis;
-        this.VisList[c[1]] = vis;
+        this.VisList[e] = vis;
         sel_c0.children(".node-head, .node-desc").attr("contenteditable", vis);
-        sel_c1.children(".node-head, .node-desc").attr("contenteditable", vis);
-        //TODO: Toggle +/- button on children
-        console.log("NodeVisToggle " + c);
         return vis;
     },
 
     clickNodeModify : function(e) {
-        var vis = this.NodeVisToggle(e);
-        $(e.target).button( vis ? 'rem':'add');
+        var tgt_sel = $(e.currentTarget);
+        var nodes = this.NodeGetChild(tgt_sel);
+        var vis = _.map(nodes, this.NodeVisToggle, this);
+        $(tgt_sel).button( vis[0] ? 'rem':'add');
+        console.log("NodeModify " + nodes);
     },
 
     toggleToolbar : function(enable){
@@ -229,13 +227,41 @@ var TreeView = Backbone.View.extend({
     },
 
     clickSave: function(e){
+        var del_nodes = [];
+        var vis_nodes = [];
+        var edit_nodes = [];
+
         this.toggleToolbar();
 
         this.$(".tree").removeClass("well");
         this.$(".node-head, .node-desc").attr("contenteditable", false);
         this.$(".on-edit").hide();
 
-    }
+        if(!_.every(this.EditList,_.identity))
+            console.log("false in EditList: ");
 
+        console.log(this.VisList);
+        console.log(this.EditList);
+
+        del_nodes = _.keys(_.reject(this.VisList, _.identity));
+        vis_nodes = _.keys(_.filter(this.VisList, _.identity));
+        //Remove deleted Node from EditList
+        edit_nodes = _.difference(_.keys(this.EditList), del_nodes);
+
+        console.log(del_nodes);
+        console.log(vis_nodes);
+        console.log(edit_nodes);
+        /*
+        _.each(edit_nodes, function(e){
+            this.model.unset(e, {silent:true});
+        }, this);
+
+        //Update Edited Nodes
+        edit_nodes = _.union(edit_nodes, vis_nodes);
+        _.each(edit_nodes, function(e){
+            this.model.set(this.elem2node(e), {silent:true});
+        }, this);
+        */
+    }
 
 });
