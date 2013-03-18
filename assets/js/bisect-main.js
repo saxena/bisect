@@ -160,10 +160,6 @@ var TreeView = Backbone.View.extend({
         return this;
     },
 
-    render_node: function(node){
-
-    },
-
     clickEditHandler: function(e){
         //var esc = e.which === 27;
         //var ret = e.which === 13;
@@ -185,14 +181,11 @@ var TreeView = Backbone.View.extend({
     },
 
     GetElemData: function(id){
-        var nid = (id === "-1") ? "tree" : "n"+id;
-        var n = { nodes : {} };
         var elem = $("div[data-id="+id+"]");
         var head = elem.children(".node-head").html();
         var desc = elem.children(".node-desc").html();
         var node = { "id" : id, "head": head, "desc": desc };
-        n.nodes[nid] = node;
-        return n;
+        return node;
     },
 
     toggleNodeVis : function(e) {
@@ -246,8 +239,7 @@ var TreeView = Backbone.View.extend({
     },
 
     clickSave: function(e){
-        this.toggleToolbar();
-        this.toggleTreeEdit(false);
+        this.ModList = this.model.get("nodes");
 
         if(!_.every(this.EditList,_.identity))
             console.log("false in EditList: ");
@@ -259,28 +251,39 @@ var TreeView = Backbone.View.extend({
           -- Get Current Nodes
           -- map through VisList and update current Nodes
           -- mps through EditList and update current Nodes
-
+        */
         _.each(this.VisList, function(v,k){
-            if(_.has(this.EditList, k)) delete this.EditList[k];
+            var nid = (k === "-1") ? "tree" : "n"+k;
             if(v){
                 console.log("set node :"+k)
-                this.model.set(this.GetElemData(k), {silent:true});
+                this.ModList[nid] = this.GetElemData(k);
             }else{
                 console.log("del node :"+k)
-                this.model.unset(k, {silent:true});
+                delete this.ModList[nid];
             }
         }, this);
 
         console.log(this.EditList);
 
-        _.each(this.EditList, function(v,k){
-            console.log("set node :"+k)
-            this.model.set(this.GetElemData(k), {silent:true});
+        _.each(this.VisList, function(v,k){
+            if(_.has(this.EditList, k)) delete this.EditList[k];
         }, this);
-        */
+
+        _.each(this.EditList, function(v,k){
+            var nid = (k === "-1") ? "tree" : "n"+k;
+            console.log("set node :"+k)
+            this.ModList[nid] = this.GetElemData(k);
+        }, this);
+
+        this.toggleToolbar();
+        this.toggleTreeEdit(false);
+
+        //Set new model
+        this.model.set("nodes", this.ModList);
 
         delete this.VisList;
         delete this.EditList;
+        delete this.ModList;
     }
 
 });
