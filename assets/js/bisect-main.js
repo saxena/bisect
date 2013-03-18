@@ -255,6 +255,11 @@ var TreeView = Backbone.View.extend({
         console.log(this.VisList);
         console.log(this.EditList);
 
+        /*
+          -- Get Current Nodes
+          -- map through VisList and update current Nodes
+          -- mps through EditList and update current Nodes
+
         _.each(this.VisList, function(v,k){
             if(_.has(this.EditList, k)) delete this.EditList[k];
             if(v){
@@ -272,6 +277,7 @@ var TreeView = Backbone.View.extend({
             console.log("set node :"+k)
             this.model.set(this.GetElemData(k), {silent:true});
         }, this);
+        */
 
         delete this.VisList;
         delete this.EditList;
