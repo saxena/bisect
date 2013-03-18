@@ -196,12 +196,12 @@
         <em>Select fields in decision tree and 'tap' or 'click' to edit them</em>
       </p>
 
-      <div id={{tree.id}} class="tree" data-id=-1>
+      {{#with nodes}}
+      <div id={{../id}} class="tree" data-id={{tree.id}}>
         <span class="label label-info pull-right"></span>
         <h2 class="node-head">{{tree.head}}</h2>
         <p class="node-desc">{{tree.desc}}</p>
 
-        {{#with nodes}}
         <div class="row-fluid" data-height="0">
           <div class="span12 tree-elem tree-top" data-id={{n0.id}}>
             <span class="label label-info pull-right"></span>

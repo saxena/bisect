@@ -7,14 +7,16 @@ var desc_txt = "Data Donec id elit non mi porta gravida at eget metus. Maecenas 
 
 var datat =
 {
-    tree:
-    {
-        id :"t1",
-        head:"A Tree",
-        desc:"A Brief description of Tree"
-    },
+    id :"t1",
     nodes :
     {
+        tree:
+        {
+            id:-1,
+            head:"A Tree",
+            desc:"A Brief description of Tree"
+        },
+
         n0:
         {
             id:0,
@@ -128,7 +130,7 @@ var TreeModel = Backbone.Model.extend({
     urlRoot:"/trees",
 
     initialize: function(){
-        this.id = this.get("tree").id;
+
     }
 });
 
@@ -141,7 +143,7 @@ var TreeView = Backbone.View.extend({
 
         "click .btn.node-modify": "clickNodeModify",
 
-        "keydown .tree" : "editHandler",
+        "keydown .tree" : "clickEditHandler",
     },
 
     initialize: function(){
@@ -162,28 +164,41 @@ var TreeView = Backbone.View.extend({
 
     },
 
-    editHandler: function(e){
+    clickEditHandler: function(e){
         //var esc = e.which === 27;
         //var ret = e.which === 13;
         var tree_elem = $(e.target).parent();
         var id = tree_elem.data("id");
         //Mark tree-elem as edited
-        this.EditList[id] = true;
-        //Show user it has changed
-        tree_elem.children("span.label:first-child").text("edited");
+        if (!_.has(this.EditList, id)){
+            this.EditList[id] = true;
+            //Show user it has changed
+            tree_elem.children("span.label:first-child").text("edited");
+        }
         console.log("EditNode :"+id);
     },
 
-    NodeGetChild: function(target){
+    GetNodeChild: function(target){
         var np =  Number(target.parent().parent().data("id"));
         if(isNaN(np)) throw "NaN";
         return [ 2*np+1, 2*np+2 ];
     },
 
-    NodeVisToggle : function(e) {
+    GetElemData: function(id){
+        var nid = (id === "-1") ? "tree" : "n"+id;
+        var n = { nodes : {} };
+        var elem = $("div[data-id="+id+"]");
+        var head = elem.children(".node-head").html();
+        var desc = elem.children(".node-desc").html();
+        var node = { "id" : id, "head": head, "desc": desc };
+        n.nodes[nid] = node;
+        return n;
+    },
+
+    toggleNodeVis : function(e) {
         //TODO: Provide data-pid in child nodes for jquery selection generation
         var vis;
-        var sel_c0 = $("div.tree-elem[data-id="+e+"]");
+        var sel_c0 = $("div[data-id="+e+"]");
         sel_c0.toggleClass("tree-elem-empty");
         vis = !sel_c0.hasClass("tree-elem-empty");
         this.VisList[e] = vis;
@@ -193,8 +208,8 @@ var TreeView = Backbone.View.extend({
 
     clickNodeModify : function(e) {
         var tgt_sel = $(e.currentTarget);
-        var nodes = this.NodeGetChild(tgt_sel);
-        var vis = _.map(nodes, this.NodeVisToggle, this);
+        var nodes = this.GetNodeChild(tgt_sel);
+        var vis = _.map(nodes, this.toggleNodeVis, this);
         $(tgt_sel).button( vis[0] ? 'rem':'add');
         console.log("NodeModify " + nodes);
     },
@@ -234,7 +249,7 @@ var TreeView = Backbone.View.extend({
         this.toggleToolbar();
         this.toggleTreeEdit(false);
 
-      if(!_.every(this.EditList,_.identity))
+        if(!_.every(this.EditList,_.identity))
             console.log("false in EditList: ");
 
         console.log(this.VisList);
@@ -244,10 +259,10 @@ var TreeView = Backbone.View.extend({
             if(_.has(this.EditList, k)) delete this.EditList[k];
             if(v){
                 console.log("set node :"+k)
-                //this.model.set(this.elem2node(k), {silent:true});
+                this.model.set(this.GetElemData(k), {silent:true});
             }else{
                 console.log("del node :"+k)
-                //this.model.unset(k, {silent:true});
+                this.model.unset(k, {silent:true});
             }
         }, this);
 
@@ -255,7 +270,7 @@ var TreeView = Backbone.View.extend({
 
         _.each(this.EditList, function(v,k){
             console.log("set node :"+k)
-            //this.model.set(this.elem2node(k), {silent:true});
+            this.model.set(this.GetElemData(k), {silent:true});
         }, this);
 
         delete this.VisList;
