@@ -16,14 +16,28 @@
 #
 import os
 import webapp2
+import jinja2
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
+class TreeHandler(webapp2.RequestHandler):
+    def get(self, tree_id):
         path = os.path.join(os.path.dirname(__file__),
-                            'web', 'assets', 'html', 'first-banner.html')
+                            'assets', 'html', 'first-banner.html')
         self.response.out.write(path)
+
+    def post(self, tree_id):
+        self.response.write(tree_id)
+        #user = users.get_current_user()
+        #if not user:
+        #    self.error(401)
+
+    def put(self, tree_id):
+        self.response.status_int = 202
+        #self.response.write(tree_id)
+
+    def delete(self, tree_id):
+        self.response.write(tree_id)
 
 
 app = webapp2.WSGIApplication([
-        ('/main', MainHandler)
+        (r'/trees/(\w+)', TreeHandler)
         ], debug=True)
