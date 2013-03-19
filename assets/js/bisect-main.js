@@ -142,15 +142,21 @@ var TreeView = Backbone.View.extend({
         "click .btn.act-save": "clickSave",
 
         "click .btn.node-modify": "clickNodeModify",
-
         "keydown .tree" : "clickEditHandler",
+
     },
 
     initialize: function(){
         this.tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
         //this.tmpl_node = Handlebars.compile($("#tmpl-node").html());
+
         this.EditList = {};
         this.VisList = {};
+
+        this.listenTo(this.model, {
+            "request": this.statusSaving,
+            "sync": this.statusDone
+        }, this);
 
         this.render();
     },
@@ -158,6 +164,14 @@ var TreeView = Backbone.View.extend({
     render: function(){
         this.$el.html(this.tmpl_tree(this.model.attributes));
         return this;
+    },
+
+    statusSaving: function(e){
+        console.log("Saving...");
+    },
+
+    statusDone: function(e){
+        console.log("Saved");
     },
 
     clickEditHandler: function(e){
@@ -279,7 +293,7 @@ var TreeView = Backbone.View.extend({
         this.toggleTreeEdit(false);
 
         //Set new model
-        this.model.set("nodes", this.ModList);
+        this.model.save("nodes", this.ModList);
 
         delete this.VisList;
         delete this.EditList;
