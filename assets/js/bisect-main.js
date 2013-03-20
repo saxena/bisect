@@ -7,7 +7,7 @@ var desc_txt = "Data Donec id elit non mi porta gravida at eget metus. Maecenas 
 
 var datat =
 {
-    id :"t1",
+    //id :"t1", -- not present on "NEW" objects
     nodes :
     {
         tree:
@@ -54,66 +54,6 @@ var datat =
    }
 };
 
-var datac =
-    {
-        tree:
-        {
-            id :"t2",
-            head:"A Tree",
-            desc:"A Brief description of Tree"
-        },
-        nodes :
-        {
-            n0:
-            {
-                id:0,
-                head:"Top Root",
-                desc: desc_txt,
-            },
-
-            n1:
-            {
-                id:1,
-                head:"Mid Root",
-                desc:desc_txt,
-            },
-
-            n2:
-            {
-                id:2,
-                head:"Mid Root",
-                desc:desc_txt,
-            },
-
-            n3:
-            {
-                id:3,
-                head:"Bot Leaf",
-                desc:desc_txt,
-            },
-
-             n4:
-            {
-                id:4,
-                head:"Bot Leaf",
-                desc:desc_txt,
-            },
-            n5:
-            {
-                id:5,
-                head:"Bot Leaf",
-                desc:desc_txt,
-            },
-            n6:
-            {
-                id:6,
-                head:"Bot Leaf",
-                desc:desc_txt,
-            },
-
-       }
-    };
-
 //render_ntree("#t-tmpl-n3-test", datac);
 function render_ntree(id, t){
     var tmpl_ntree = Handlebars.compile($("#tmpl-ntree").html());
@@ -127,11 +67,9 @@ jQuery(document).ready(function(){
 });
 
 var TreeModel = Backbone.Model.extend({
-    urlRoot:"/trees",
 
-    initialize: function(){
+    urlRoot:"/tree",
 
-    }
 });
 
 var TreeView = Backbone.View.extend({
@@ -148,7 +86,6 @@ var TreeView = Backbone.View.extend({
 
     initialize: function(){
         this.tmpl_tree = Handlebars.compile($("#tmpl-tree").html());
-        //this.tmpl_node = Handlebars.compile($("#tmpl-node").html());
 
         this.EditList = {};
         this.VisList = {};
@@ -248,8 +185,8 @@ var TreeView = Backbone.View.extend({
         this.toggleToolbar();
 
         this.render();
-        delete this.VisList;
-        delete this.EditList;
+        this.VisList = {};
+        this.EditList = {};
     },
 
     clickSave: function(e){
@@ -295,9 +232,9 @@ var TreeView = Backbone.View.extend({
         //Set new model
         this.model.save("nodes", this.ModList);
 
-        delete this.VisList;
-        delete this.EditList;
-        delete this.ModList;
+        this.VisList = {};
+        this.EditList = {};
+        this.ModList = {};
     }
 
 });
