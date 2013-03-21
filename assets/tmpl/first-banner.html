@@ -20,12 +20,6 @@
         max-width: 768px;
       }
 
-      .masthead {
-        background: url("/img/grey/grey.png") repeat scroll 0% 0% transparent;
-        min-height: 50px;
-        padding: 0 10px;
-      }
-
       /* Main marketing message and sign up button */
       .jumbotron {
         margin: 60px 0;
@@ -57,14 +51,6 @@
 
       [contenteditable]:hover:not(:focus) {
         outline: 1px dotted;
-      }
-
-      /* NestedTree Formatting */
-      .ntree-elem {
-        text-align:center;
-        border-radius:3px;
-        margin:4px 0px;
-        padding:4px;
       }
 
       /* Turn on Visibility */
@@ -137,25 +123,6 @@
         </div>
       </div>
 
-      {#
-      <div class="masthead">
-        <div class="btn-toolbar pull-right">
-          <a class="btn" href="#">About</a>
-        </div>
-        <div class="btn-toolbar pull-left">
-          {% if user is none %}
-          <a class="btn" href="{{user_url}}">Sign In</a>
-          {% else %}
-          <a class="btn" href="{{user_url}}">Sign Out</a>
-          {% endif %}
-        </div>
-        <h3 class="text-center">Inorg Bisect <small class="muted">(beta)</small></h3>
-        {% if user  %}
-        <div><span class="text-info">{{user}}</span></div>
-        {% endif %}
-      </div>
-      #}
-
       <div class="jumbotron">
         <h1>Super Bisection!</h1>
         <p>decisions diagrams to help your users identify the source of
@@ -165,31 +132,6 @@
 
       <div id="t-tmpl-r3-test"></div>
 
-      <!-- View in three separate rows -->
-      <!--
-      <div id="t-r3-new">
-        <h3>Create a new Bisection</h3>
-        <div class="row-fluid">
-          <div class="span12 tree-elem-empty tree-top">
-            <h4>Create the Starting Question</h4>
-            <p>The starting question is the first question that your
-            users will answer with a Yes or a No.</p>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span6 tree-elem tree-mid">
-            <h4>If the answer is Yes</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-          <div class="span6 tree-elem tree-mid">
-            <h4>Or if it's No</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-          </div>
-        </div>
-      </div>
-      -->
-      <hr>
       <div class="footer">
         <p>&copy; Inorg.org 2013</p>
       </div>
@@ -331,53 +273,12 @@
           </div>
           {{/if}}
         </div>
-
-        <!-- More Sub-Trees as needed
-        <div>
-        <div class="row-fluid" data-height="3">
-          <div class="span12 tree-elem tree-top" data-id="n100">
-            <h4>DODO</h4>
-            <p>DODO Desc</p>
-          </div>
-        </div>
-
-        <div class="row-fluid" data-height="3">
-          <div class="span6 tree-elem tree-top" data-id="n101">
-            <h4>DIDI</h4>
-            <p>DIDI Desc</p>
-          </div>
-          <div class="span6 tree-elem tree-top" data-id="n101">
-            <h4>DIDI</h4>
-            <p>DIDI Desc</p>
-          </div>
-        </div>
-        </div>
-
-        <div>
-        <div class="row-fluid" data-height="3">
-          <div class="span12 tree-elem tree-top" data-id="n100">
-            <h4>DODO</h4>
-            <p>DODO Desc</p>
-          </div>
-        </div>
-
-        <div class="row-fluid" data-height="3">
-          <div class="span6 tree-elem tree-top" data-id="n101">
-            <h4>DIDI</h4>
-            <p>DIDI Desc</p>
-          </div>
-          <div class="span6 tree-elem tree-top" data-id="n101">
-            <h4>DIDI</h4>
-            <p>DIDI Desc</p>
-          </div>
-        </div>
-        </div>
-        -->
         {{/with}}
       </div>
       {% endraw %}
     </script>
 
+    {#
     <script type="text/template" id="tmpl-tree1">
       {% raw %}
       <div class="btn-toolbar">
@@ -422,6 +323,7 @@
       </div>
       {% endraw %}
     </script>
+    #}
 
    <!-- Le javascript
     ================================================== -->
@@ -436,7 +338,7 @@
     <script src="/js/handlebars.js"></script>
     <script src="/js/holder.js"></script>
 
-    <!-- <script src="/d3/d3.v3.js"></script> -->
+    {# <!-- <script src="/d3/d3.v3.js"></script> --> #}
     <script src="/js/bisect-main.js"></script>
 
   </body>
