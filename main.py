@@ -23,6 +23,13 @@ import logging
 from google.appengine.ext import db
 from google.appengine.api import users
 
+####################
+def GetBT(req, tree_id):
+    user = users.get_current_user()
+    logging.info('GetBT: %s', ','.join(map(str,(user,tree_id))))
+    tree = BisectionTree.get_by_id(tree_id)
+    return tree
+
 def AddBT(req):
     user = users.get_current_user()
     nodes = req.body
@@ -34,10 +41,7 @@ def AddBT(req):
     return tree_id
 
 def EditBT(req, tree_id):
-    user = users.get_current_user()
-    #tree_id = req.get('id')
-    logging.info('EditBT: %s', ','.join(map(str,(user,tree_id))))
-    tree = BisectionTree.get_by_id(tree_id)
+    tree = GetBT(req, tree_id)
     if tree is not None:
         tree.is_public = False if req.get('is_public') is '' else True
         tree.nodes = req.body
@@ -59,12 +63,21 @@ class BisectionTree(db.Model):
     user = db.UserProperty(required=False, auto_current_user=False)
     is_public = db.BooleanProperty()
     nodes = db.TextProperty()
-
-
+####################
+def GetUser():
+    u = users.get_current_user()
+    u_nick = u.nickname() if u else None
+    u_url = users.create_logout_url("/tree") if u else users.create_login_url("/tree")
+    return (u_nick, u_url)
+####################
 class NewTreeHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('first-banner.html')
-        self.response.out.write(template.render({}))
+        usr,usr_url = GetUser()
+        self.response.out.write(tree_tmpl.render({
+                    "jtree": None,
+                    "user": usr,
+                    "user_url": usr_url
+                    }))
 
     def post(self):
         status = AddBT(self.request)
@@ -72,6 +85,15 @@ class NewTreeHandler(webapp2.RequestHandler):
         self.response.write(json.dumps({"id":str(status)}))
 
 class TreeHandler(webapp2.RequestHandler):
+    def get(self, tree_id):
+        usr,usr_url = GetUser()
+        tree = GetBT(self.request, int(tree_id))
+        self.response.out.write(tree_tmpl.render({
+                    "jtree": tree,
+                    "user": usr,
+                    "user_url": usr_url
+                    }))
+
     def put(self, tree_id):
         status = EditBT(self.request, int(tree_id))
         self.response.status_int = 202 if status else 404
@@ -87,10 +109,10 @@ app = webapp2.WSGIApplication([
         (r'/tree', NewTreeHandler)
         ], debug=True)
 
-jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(
-        os.path.join(os.path.dirname(__file__), 'assets', 'tmpl')
-    ))
+jenv = jinja2.Environment(loader=jinja2.FileSystemLoader(
+        os.path.join(os.path.dirname(__file__), 'assets', 'tmpl')))
+
+tree_tmpl = jenv.get_template('first-banner.html')
 
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
