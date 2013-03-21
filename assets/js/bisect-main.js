@@ -2,6 +2,7 @@
 
 var mytreeview;
 var mytreemodel;
+var myroute;
 
 var desc_txt = "Data Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. for Top Root";
 
@@ -63,7 +64,8 @@ function render_ntree(id, t){
 jQuery(document).ready(function(){
     mytreemodel = new TreeModel(datat);
     mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
-
+    myroute = new BisectRouter();
+    Backbone.history.start({pushState: true});
 });
 
 var TreeModel = Backbone.Model.extend({
@@ -108,6 +110,7 @@ var TreeView = Backbone.View.extend({
     },
 
     statusDone: function(e){
+        myroute.navigate(this.model.url());
         console.log("Saved");
     },
 
@@ -238,3 +241,5 @@ var TreeView = Backbone.View.extend({
     }
 
 });
+
+var BisectRouter = Backbone.Router.extend({});
