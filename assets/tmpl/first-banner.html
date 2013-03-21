@@ -175,7 +175,7 @@
     <!-- Le templates
     ================================================== -->
     <script type="text/template" id="tmpl-tree">
-
+      {% raw %}
       <div class="btn-toolbar">
         <button class="btn btn-small
         act-edit"><i class="icon-edit"></i> Edit Tree</button>
@@ -351,9 +351,11 @@
         -->
         {{/with}}
       </div>
+      {% endraw %}
     </script>
 
     <script type="text/template" id="tmpl-tree1">
+      {% raw %}
       <div class="btn-toolbar">
         <button class="btn btn-small act-edit"><i class="icon-edit"></i> Edit Tree</button>
         <div class="btn-group pull-right">
@@ -373,11 +375,11 @@
 
       {{! For each Row  }}
       {{! For each Node }}
-
+      {% endraw %}
     </script>
 
     <script type="text/template" id="tmpl-node">
-
+      {% raw %}
       <div class="{{n.span}} {{n.level}} {{n.elem}}" data-id={{n.id}}>
         <span class="label label-info pull-right"></span>
         <h4 class="node-head">{{n.head}}</h4>
@@ -394,7 +396,7 @@
           </button>
         </span>
       </div>
-
+      {% endraw %}
     </script>
 
    <!-- Le javascript
