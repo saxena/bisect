@@ -62,17 +62,16 @@ class BisectionTree(db.Model):
 
 
 class NewTreeHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('first-banner.html')
+        self.response.out.write(template.render({}))
+
     def post(self):
         status = AddBT(self.request)
         self.response.status_int = 202 if status else 404
         self.response.write(json.dumps({"id":str(status)}))
 
 class TreeHandler(webapp2.RequestHandler):
-    def get(self, tree_id):
-        path = os.path.join(os.path.dirname(__file__),
-                            'assets', 'html', 'first-banner.html')
-        self.response.out.write(path)
-
     def put(self, tree_id):
         status = EditBT(self.request, int(tree_id))
         self.response.status_int = 202 if status else 404
@@ -87,6 +86,11 @@ app = webapp2.WSGIApplication([
         (r'/tree/(\w+)', TreeHandler),
         (r'/tree', NewTreeHandler)
         ], debug=True)
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(
+        os.path.join(os.path.dirname(__file__), 'assets', 'tmpl')
+    ))
 
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
