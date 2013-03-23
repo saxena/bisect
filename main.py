@@ -24,16 +24,20 @@ from google.appengine.ext import db
 from google.appengine.api import users
 
 ####################
-def GetBT(req, tree_id):
-    user = users.get_current_user()
-    logging.info('GetBT:%s', ','.join(map(str,(user,tree_id))))
-    tree = BisectionTree.get_by_id(tree_id)
-    return tree
+def DBTree(tree):
+    #HACK overwriting id!
+    t = json.loads(tree.nodes)["nodes"]["tree"]
+    t["id"] = tree.key().id()
+    return t
+####################
+def ListBT():
+    tlist = BisectionTree.all().filter('is_public =', True).fetch(limit=10)
+    return [DBTree(t) for t in tlist]
 
 def AddBT(user, req):
     userid = user.user_id() if user else ''
     nodes = req.body
-    is_public = False if req.get('is_public') is '' else True
+    is_public = True if req.get('is_public') is '' else False
     tree = BisectionTree(userid=userid, is_public=is_public, nodes=nodes)
     tree.put()
     tree_id = tree.key().id()
@@ -60,7 +64,7 @@ def DelBT(req, tree_id):
         return None
 
 class BisectionTree(db.Model):
-    userid = db.StringProperty(required=True)
+    userid = db.StringProperty(required=False)
     is_public = db.BooleanProperty(required=True)
     nodes = db.TextProperty(required=True)
 
@@ -91,17 +95,19 @@ def GetUserData():
     u_url = users.create_logout_url("/tree") if u else users.create_login_url("/tree")
     return (u, u_url)
 
-def RenderTreeTmpl(tree,u,u_url):
+def RenderTreeTmpl(u,u_url,tree, t_list ):
     return tree_tmpl.render({
-            "jtree": tree,
-            "user": u.nickname() if u else None,
-            "user_url": u_url
-            })
+        "jtree": tree,
+        "tlist": t_list,
+        "user": u.nickname() if u else None,
+        "uurl": u_url
+    })
 ####################
 class NewTreeHandler(webapp2.RequestHandler):
     def get(self):
         u,u_url = GetUserData()
-        self.response.out.write(RenderTreeTmpl(None,u,u_url))
+        t_list = ListBT()
+        self.response.out.write(RenderTreeTmpl(u,u_url,None,t_list))
 
     def post(self):
         u,u_url = GetUserData()
@@ -118,7 +124,7 @@ class TreeHandler(webapp2.RequestHandler):
         u,u_url = GetUserData()
         tree = UserCanGetBT(u, int(tree_id))
         if tree :
-            self.response.out.write(RenderTreeTmpl(tree,u,u_url))
+            self.response.out.write(RenderTreeTmpl(u,u_url,tree,None))
         else:
             self.response.status_int = 401
 

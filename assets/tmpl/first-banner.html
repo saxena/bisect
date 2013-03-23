@@ -118,10 +118,10 @@
           <a class="brand" href="#">Inorg Bisect <small class="muted">(beta)</small></a>
           <ul class="nav pull-right">
             {% if user is none %}
-            <li><a href="{{user_url|e}}">Sign In</a></li>
+            <li><a href="{{uurl|e}}">Sign In</a></li>
             {% else %}
             <li><a>{{user}}</a></li>
-            <li><a href="{{user_url|e}}">Sign Out</a></li>
+            <li><a href="{{uurl|e}}">Sign Out</a></li>
             {% endif %}
             <li><a href="#">About</a></li>
           </ul>
@@ -136,6 +136,16 @@
       </div>
 
       <div id="t-tmpl-r3-test"></div>
+
+      <div>
+        <ul>
+          {% if tlist %}
+          {% for t in tlist %}
+          <li><a href="/tree/{{t.id}}">{{t.head}}</a> {{t.desc}}</li>
+          {% endfor %}
+          {% endif %}
+        </ul>
+      </div>
 
       <footer class="footer">
         <div class="media pull-left text-left" style="margin-left:10px">
