@@ -1,18 +1,5 @@
 #!/usr/bin/env python
 #
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 #
 import os
 import webapp2
@@ -24,15 +11,21 @@ from google.appengine.ext import db
 from google.appengine.api import users
 
 ####################
-def DBTree(tree):
-    #HACK overwriting id!
+def GetBTDesc(tree):
+    #HACK overwriting id: "tree" id is always encoded as -1
     t = json.loads(tree.nodes)["nodes"]["tree"]
     t["id"] = tree.key().id()
     return t
+
+def GetBTJson(tree):
+    t = json.loads(tree.nodes)
+    t["id"] = tree.key().id()
+    return json.dumps(t)
+
 ####################
 def ListBT():
     tlist = BisectionTree.all().filter('is_public =', True).fetch(limit=10)
-    return [DBTree(t) for t in tlist]
+    return [GetBTDesc(t) for t in tlist]
 
 def AddBT(user, req):
     userid = user.user_id() if user else ''
@@ -92,12 +85,13 @@ def UserCanEditBT(user, tree_id):
 ####################
 def GetUserData():
     u = users.get_current_user()
-    u_url = users.create_logout_url("/tree") if u else users.create_login_url("/tree")
+    if u: u_url = users.create_logout_url("/tree") 
+    else: u_url = users.create_login_url("/tree")
     return (u, u_url)
 
-def RenderTreeTmpl(u,u_url,tree, t_list ):
+def RenderTreeTmpl(u,u_url,tree,t_list ):
     return tree_tmpl.render({
-        "jtree": tree,
+        "thistree": tree,
         "tlist": t_list,
         "user": u.nickname() if u else None,
         "uurl": u_url
@@ -106,8 +100,7 @@ def RenderTreeTmpl(u,u_url,tree, t_list ):
 class NewTreeHandler(webapp2.RequestHandler):
     def get(self):
         u,u_url = GetUserData()
-        t_list = ListBT()
-        self.response.out.write(RenderTreeTmpl(u,u_url,None,t_list))
+        self.response.out.write(RenderTreeTmpl(u,u_url,"undefined",ListBT()))
 
     def post(self):
         u,u_url = GetUserData()
@@ -124,7 +117,7 @@ class TreeHandler(webapp2.RequestHandler):
         u,u_url = GetUserData()
         tree = UserCanGetBT(u, int(tree_id))
         if tree :
-            self.response.out.write(RenderTreeTmpl(u,u_url,tree,None))
+            self.response.out.write(RenderTreeTmpl(u,u_url,GetBTJson(tree),ListBT()))
         else:
             self.response.status_int = 401
 

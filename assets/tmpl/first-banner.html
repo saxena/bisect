@@ -365,10 +365,18 @@
     <script src="/js/backbone-min.js"></script>
 
     <script src="/js/handlebars.js"></script>
-    <script src="/js/holder.js"></script>
-
+    {# <!-- <script src="/js/holder.js"></script> --> #}
     {# <!-- <script src="/d3/d3.v3.js"></script> --> #}
     <script src="/js/bisect-main.js"></script>
 
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+      var this_tree = {{thistree}};
+      mytreemodel = new TreeModel(this_tree?this_tree:new_tree);
+      mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
+      myroute = new BisectRouter();
+      Backbone.history.start({pushState: true});
+      });
+    </script>
   </body>
 </html>
