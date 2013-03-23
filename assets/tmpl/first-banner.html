@@ -10,9 +10,6 @@
     <!-- Le styles -->
     <link href="/bs/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
-      body {
-        padding-bottom: 20px;
-      }
 
       /* Custom container */
       .container-narrow {
@@ -32,6 +29,14 @@
       .jumbotron .btn {
         font-size: 21px;
         padding: 14px 24px;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 70px;
+        border: 1px solid rgb(229, 229, 229);
+        background-color: rgb(245, 245, 245);
       }
 
       /* Missing from BS */
@@ -132,9 +137,23 @@
 
       <div id="t-tmpl-r3-test"></div>
 
-      <div class="footer">
-        <p>&copy; Inorg.org 2013</p>
-      </div>
+      <footer class="footer">
+        <div class="media pull-left text-left" style="margin-left:10px">
+          <a class="pull-left" target="_blank" href="http://twitter.com/rksio">
+            <img class="media-object img-circle" src="/img/rksio.jpg"
+                 {#data-src="holder.js/64x64"#}
+                 alt="@rksio" style="width: 64px; height: 64px;">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">Bisect</h4>
+            Bisect is is an experiment in knowledge sharing. <p>Rahul
+            Saxena <a target="_blank"
+            href="http://twitter.com/rksio">@rksio</a></p>
+          </div>
+        </div>
+        <p class="muted">&middot; Made organically in Boulder, CO &middot;</p>
+        <p><small>&copy; 2013 Inorg.org</small></p>
+    </footer>
 
     </div> <!-- /container -->
 
@@ -147,9 +166,9 @@
         act-edit"><i class="icon-edit"></i> Edit Tree</button>
         <div class="btn-group pull-right">
           <button class="btn btn-small disabled
-          act-save" disabled="disabled"><i class="icon-ok"></i> Save Changes</button>
+          act-save" disabled="disabled"><i class="icon-ok"></i> Save</button>
           <button class="btn btn-small disabled
-          act-cancel" disabled="disabled"><i class="icon-remove"></i> Revert Changes</button>
+          act-cancel" disabled="disabled"><i class="icon-remove"></i> Revert</button>
         </div>
       </div>
       <p class="on-edit text-info">

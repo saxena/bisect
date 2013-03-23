@@ -4,8 +4,6 @@ var mytreeview;
 var mytreemodel;
 var myroute;
 
-var desc_txt = "Data Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. for Top Root";
-
 var datat =
 {
     //id :"t1", -- not present on "NEW" objects
@@ -60,13 +58,6 @@ function render_ntree(id, t){
     var tmpl_ntree = Handlebars.compile($("#tmpl-ntree").html());
     $(id).append(tmpl_ntree(t));
 }
-
-jQuery(document).ready(function(){
-    mytreemodel = new TreeModel(datat);
-    mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
-    myroute = new BisectRouter();
-    Backbone.history.start({pushState: true});
-});
 
 var TreeModel = Backbone.Model.extend({
 
@@ -242,4 +233,13 @@ var TreeView = Backbone.View.extend({
 
 });
 
-var BisectRouter = Backbone.Router.extend({});
+var BisectRouter = Backbone.Router.extend({
+
+});
+
+jQuery(document).ready(function(){
+    mytreemodel = new TreeModel(datat);
+    mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
+    myroute = new BisectRouter();
+    Backbone.history.start({pushState: true});
+});
