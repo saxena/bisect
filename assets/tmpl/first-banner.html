@@ -42,9 +42,7 @@
 
       .footer {
         text-align: center;
-        padding-top: 30px;
-        padding-bottom: 30px;
-        margin-top: 70px;
+        padding: 30px 0;
       }
 
       /* Missing from BS */
@@ -66,7 +64,7 @@
         border-top: 2px solid #DDD;
         border-bottom: 2px solid #DDD;
         border-radius: 10px;
-        padding: 10px 0;
+        padding: 20px 0;
       }
 
       .tree-list {
@@ -74,6 +72,7 @@
         border-bottom: 2px solid #DDD;
         border-radius: 10px;
         margin: 30px 0;
+        padding-left: 10px;
       }
 
       [contenteditable]:hover:not(:focus) {
@@ -173,26 +172,30 @@
         </ul>
       </div>
 
-      <footer id="about" class="footer navbar-inner">
-        <div class="row-fluid">
-          <div class="span6">
-            <div class="media text-left" style="margin-left:10px">
-              <a class="pull-left" target="_blank" href="http://twitter.com/rksio">
-                <img class="media-object img-circle" src="/img/rksio.jpg"
-                     alt="@rksio" style="width: 64px; height: 64px;"></a>
-              <div class="media-body">
-                <h4 class="media-heading">Bisect</h4>
-                Bisect is a tool that allows you to share your expertise. Rahul
-                Saxena <a target="_blank" href="http://twitter.com/rksio">@rksio</a>
+      <div class="navbar" style="margin-bottom:0;">
+        <div class="navbar-inner">
+          <footer id="about" class="footer">
+            <div class="row-fluid">
+              <div class="span6">
+                <div class="media text-left" style="margin-left:10px">
+                  <a class="pull-left" target="_blank" href="http://twitter.com/rksio">
+                    <img class="media-object img-circle" src="/img/rksio.jpg"
+                         alt="@rksio" style="width: 64px; height: 64px;"></a>
+                  <div class="media-body">
+                    <h4 class="media-heading">Bisect</h4>
+                    Bisect is a tool that allows you to share your expertise. Rahul
+                    Saxena <a target="_blank" href="http://twitter.com/rksio">@rksio</a>
+                  </div>
+                </div>
+              </div>
+              <div class="span6">
+                <p class="muted">&middot; Made organically in Boulder, CO &middot;</p>
+                <!-- <p>Inorg.org &copy; 2013</p> -->
               </div>
             </div>
-          </div>
-          <div class="span6">
-            <p class="muted">&middot; Made organically in Boulder, CO &middot;</p>
-            <!-- <p>Inorg.org &copy; 2013</p> -->
-          </div>
+          </footer>
         </div>
-    </footer>
+      </div>
 
     </div> <!-- /container -->
 
