@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-#
-#
+
 import os
 import webapp2
 import jinja2
@@ -14,12 +13,12 @@ from google.appengine.api import users
 def GetBTDesc(tree):
     #HACK overwriting id: "tree" id is always encoded as -1
     t = json.loads(tree.nodes)["nodes"]["tree"]
-    t["id"] = tree.key().id()
+    t["id"] = str(tree.key().id())
     return t
 
 def GetBTJson(tree):
     t = json.loads(tree.nodes)
-    t["id"] = tree.key().id()
+    t["id"] = str(tree.key().id())
     return json.dumps(t)
 
 ####################
@@ -28,7 +27,7 @@ def ListBT():
     return [GetBTDesc(t) for t in tlist]
 
 def AddBT(user, req):
-    userid = user.user_id() if user else ''
+    userid = user.user_id() if user else None
     nodes = req.body
     is_public = True if req.get('is_public') is '' else False
     tree = BisectionTree(userid=userid, is_public=is_public, nodes=nodes)
@@ -78,7 +77,10 @@ def UserCanAddBT(user, tree_id=0):
 
 def UserCanEditBT(user, tree_id):
     tree = BisectionTree.get_by_id(tree_id)
-    if tree and user and tree.userid is user.user_id():
+    logging.info("UserCanEditBT: U: %s T: %s", user, tree.userid)
+    if tree and tree.userid is None:
+        return tree
+    elif tree and user and tree.userid is user.user_id():
         return tree
     else:
         return None
@@ -127,6 +129,8 @@ class TreeHandler(webapp2.RequestHandler):
             status = EditBT(self.request, int(tree_id))
             self.response.status_int = 202 if status else 404
             self.response.write(json.dumps(status))
+        else:
+            self.response.status_int = 403
 
     def delete(self, tree_id):
         u = users.get_current_user()
