@@ -54,6 +54,17 @@
 
       /* Inorg Specific CSS*/
 
+      .tree-container {
+        border-top: 1px solid rgb(229, 229, 229);
+        padding: 10px 0;
+      }
+
+      .tree-list {
+        border-top: 1px solid rgb(229, 229, 229);
+        border-bottom: 1px solid rgb(229, 229, 229);
+        margin: 30px 0;
+      }
+
       [contenteditable]:hover:not(:focus) {
         outline: 1px dotted;
       }
@@ -123,7 +134,7 @@
             <li><a>{{user}}</a></li>
             <li><a href="{{uurl|e}}">Sign Out</a></li>
             {% endif %}
-            <li><a href="#">About</a></li>
+            <li><a href="#about">About</a></li>
           </ul>
         </div>
       </div>
@@ -135,19 +146,23 @@
         <button type="button" class="btn btn-large btn-success">Create one Now!</button>
       </div>
 
-      <div id="t-tmpl-r3-test"></div>
+      <div id="t-tmpl-r3-test" class="tree-container"></div>
 
-      <div>
+      <div class="tree-list">
+        <h3>Recently created bisections</h3>
         <ul>
           {% if tlist %}
           {% for t in tlist %}
-          <li><a href="/tree/{{t.id}}">{{t.head}}</a> {{t.desc}}</li>
+          <li>
+            <a href="/tree/{{t.id}}">{{t.head}}</a>
+            <small class="muted">{{t.desc}}</small>
+          </li>
           {% endfor %}
           {% endif %}
         </ul>
       </div>
 
-      <footer class="footer">
+      <footer id="about" class="footer">
         <div class="media pull-left text-left" style="margin-left:10px">
           <a class="pull-left" target="_blank" href="http://twitter.com/rksio">
             <img class="media-object img-circle" src="/img/rksio.jpg"
@@ -162,7 +177,7 @@
           </div>
         </div>
         <p class="muted">&middot; Made organically in Boulder, CO &middot;</p>
-        <p><small>&copy; 2013 Inorg.org</small></p>
+        <p><small>Inorg.org &copy; 2013</small></p>
     </footer>
 
     </div> <!-- /container -->
