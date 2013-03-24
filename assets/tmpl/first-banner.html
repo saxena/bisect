@@ -220,15 +220,14 @@
       {{#with nodes}}
       <!-- <div id={{../id}} class="tree" data-id={{tree.id}}> -->
       <div class="tree" data-id={{tree.id}}>
-        <span class="label label-info pull-right"></span>
         <h2 class="node-head">{{tree.head}}</h2>
         <p class="node-desc">{{tree.desc}}</p>
-
+        <span class="label label-info pull-right"></span>
         <div class="row-fluid" data-height="0">
           <div class="span12 tree-elem tree-top" data-id={{n0.id}}>
-            <span class="label label-info pull-right"></span>
             <h4 class="node-head">{{n0.head}}</h4>
             <p class="node-desc">{{n0.desc}}</p>
+            <span class="label label-info pull-right"></span>
           </div>
         </div>
 
@@ -247,9 +246,9 @@
               </div>
             </div>
             -->
-            <span class="label label-info pull-right"></span>
             <h4 class="node-head">{{n1.head}}</h4>
             <p class="node-desc">{{n1.desc}}</p>
+            <span class="label label-info pull-right"></span>
             <span class="on-edit">
               <button class="btn btn-mini node-modify"
                       data-add-text='<i class="icon-plus-sign"></i> Add'
@@ -263,9 +262,9 @@
             </span>
           </div>
           <div class="span6 tree-elem tree-mid" data-id={{n2.id}}>
-            <span class="label label-info pull-right"></span>
             <h4 class="node-head">{{n2.head}}</h4>
             <p class="node-desc">{{n2.desc}}</p>
+            <span class="label label-info pull-right"></span>
             <span class="on-edit">
               <button class="btn btn-mini node-modify"
                       data-add-text='<i class="icon-plus-sign"></i> Add'
@@ -354,9 +353,9 @@
       </p>
 
       <div id={{tree.id}} class="tree" data-id=-1>
-        <span class="label label-info pull-right"></span>
         <h2 class="node-head">{{tree.head}}</h2>
         <p class="node-desc">{{tree.desc}}</p>
+        <span class="label label-info pull-right"></span>
       </div>
 
       {{! For each Row  }}
@@ -367,9 +366,9 @@
     <script type="text/template" id="tmpl-node">
       {% raw %}
       <div class="{{n.span}} {{n.level}} {{n.elem}}" data-id={{n.id}}>
-        <span class="label label-info pull-right"></span>
         <h4 class="node-head">{{n.head}}</h4>
         <p class="node-desc">{{n.desc}}</p>
+        <span class="label label-info pull-right"></span>
         <span class="on-edit">
           <button class="btn btn-mini node-modify"
                   data-add-text='<i class="icon-plus-sign"></i> Add'

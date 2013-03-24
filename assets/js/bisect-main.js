@@ -108,7 +108,7 @@ var TreeView = Backbone.View.extend({
         if (!_.has(this.EditList, id)){
             this.EditList[id] = true;
             //Show user it has changed
-            tree_elem.children("span.label:first-child").text("edited");
+            tree_elem.children("span.label").text("edited");
         }
         console.log("EditNode :"+id);
     },
