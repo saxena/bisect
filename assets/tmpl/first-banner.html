@@ -10,6 +10,9 @@
     <!-- Le styles -->
     <link href="/bs/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
+      body {
+        background:-moz-linear-gradient(0% 100% 278deg, #A5AAC0, #8E70BF 100%)
+      }
 
       /* Custom container */
       .container-narrow {
@@ -33,14 +36,13 @@
 
       .footer {
         text-align: center;
-        padding: 30px 0;
+        padding-top: 30px;
+        padding-bottom: 30px;
         margin-top: 70px;
-        border: 1px solid rgb(229, 229, 229);
-        background-color: rgb(245, 245, 245);
       }
 
       /* Missing from BS */
-     .text-left {
+      .text-left {
         text-align: left;
       }
 
@@ -56,12 +58,15 @@
 
       .tree-container {
         border-top: 1px solid rgb(229, 229, 229);
+        border-bottom: 1px solid rgb(229, 229, 229);
+        border-radius: 10px;
         padding: 10px 0;
       }
 
       .tree-list {
         border-top: 1px solid rgb(229, 229, 229);
         border-bottom: 1px solid rgb(229, 229, 229);
+        border-radius: 10px;
         margin: 30px 0;
       }
 
@@ -155,14 +160,14 @@
           {% for t in tlist %}
           <li>
             <a href="/tree/{{t.id}}">{{t.head}}</a>
-            <small class="muted">{{t.desc}}</small>
+            <small>{{t.desc}}</small>
           </li>
           {% endfor %}
           {% endif %}
         </ul>
       </div>
 
-      <footer id="about" class="footer">
+      <footer id="about" class="footer navbar-inner">
         <div class="row-fluid">
           <div class="span6">
             <div class="media text-left" style="margin-left:10px">
