@@ -1,5 +1,7 @@
 "use strict";
 
+var mytlist;
+var recenttlist;
 var mytreeview;
 var mytreemodel;
 var myroute;
@@ -52,6 +54,10 @@ var new_tree =
         },
    }
 };
+
+var BisectRouter = Backbone.Router.extend({
+
+});
 
 var TreeModel = Backbone.Model.extend({
 
@@ -227,6 +233,24 @@ var TreeView = Backbone.View.extend({
 
 });
 
-var BisectRouter = Backbone.Router.extend({
+var TreeListModel = Backbone.Model.extend({
+
+    url: function() {
+        return "/tree";
+    },
+
+});
+
+var TreeListView = Backbone.View.extend({
+
+    initialize: function(){
+        this.tmpl_tlist = Handlebars.compile($("#tmpl-tlist").html());
+        this.render();
+    },
+
+    render: function(){
+        this.$el.html(this.tmpl_tlist(this.model.attributes));
+        return this;
+    },
 
 });

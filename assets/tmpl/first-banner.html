@@ -157,20 +157,8 @@
       </div>
 
       <div id="t-tmpl-r3-test" class="tree-container"></div>
-
-      <div class="tree-list">
-        <h3>Recently created bisections</h3>
-        <ul>
-          {% if tlist %}
-          {% for t in tlist %}
-          <li>
-            <a href="/tree/{{t.id}}">{{t.head}}</a>
-            <small>{{t.desc}}</small>
-          </li>
-          {% endfor %}
-          {% endif %}
-        </ul>
-      </div>
+      {# <div id="mytlist" class="tree-list"></div> #}
+      <div id="recenttlist" class="tree-list"></div>
 
       <div class="navbar" style="margin-bottom:0;">
         <div class="navbar-inner">
@@ -199,10 +187,10 @@
 
     </div> <!-- /container -->
 
+    {% raw %}
     <!-- Le templates
     ================================================== -->
     <script type="text/template" id="tmpl-tree">
-      {% raw %}
       <div class="btn-toolbar">
         <button class="btn btn-small
         act-edit"><i class="icon-edit"></i> Edit Tree</button>
@@ -335,8 +323,22 @@
         </div>
         {{/with}}
       </div>
-      {% endraw %}
     </script>
+    {% endraw %}
+
+    {% raw %}
+    <script type="text/template" id="tmpl-tlist">
+      <h3>{{desc}}</h3>
+      <ul>
+        {{#each tlist}}
+        <li>
+          <a href="/tree/{{id}}">{{head}}</a>
+          <small>{{desc}}</small>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+    {% endraw %}
 
     {#
     <script type="text/template" id="tmpl-tree1">
@@ -403,7 +405,9 @@
     <script type="text/javascript">
       jQuery(document).ready(function(){
       var this_tree = {{thistree}};
-      mytreemodel = new TreeModel(this_tree?this_tree:new_tree);
+      {# mytlist = new TreeListView({el:"#mytlist", model: new TreeListModel({{mytlist}})}); #}
+      recenttlist = new TreeListView({el:"#recenttlist", model: new TreeListModel({{recenttlist}})});
+      mytreemodel = new TreeModel(this_tree !== null ?this_tree:new_tree);
       mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
       myroute = new BisectRouter();
       Backbone.history.start({pushState: true});

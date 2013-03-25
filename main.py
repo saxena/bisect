@@ -19,7 +19,7 @@ def GetBTDesc(tree):
 def GetBTJson(tree):
     t = json.loads(tree.nodes)
     t["id"] = str(tree.key().id())
-    return json.dumps(t)
+    return t
 
 ####################
 def ListBT():
@@ -87,14 +87,16 @@ def UserCanEditBT(user, tree_id):
 ####################
 def GetUserData():
     u = users.get_current_user()
-    if u: u_url = users.create_logout_url("/tree") 
+    if u: u_url = users.create_logout_url("/tree")
     else: u_url = users.create_login_url("/tree")
     return (u, u_url)
 
-def RenderTreeTmpl(u,u_url,tree,t_list ):
+def RenderTreeTmpl(u,u_url,tree,t_list):
+    sep = (',',':')
+    recenttlist = {"desc":"Newest Bisections","tlist":t_list}
     return tree_tmpl.render({
-        "thistree": tree,
-        "tlist": t_list,
+        "thistree": json.dumps(tree,separators=sep),
+        "recenttlist": json.dumps(recenttlist,separators=sep),
         "user": u.nickname() if u else None,
         "uurl": u_url
     })
@@ -102,7 +104,7 @@ def RenderTreeTmpl(u,u_url,tree,t_list ):
 class NewTreeHandler(webapp2.RequestHandler):
     def get(self):
         u,u_url = GetUserData()
-        self.response.out.write(RenderTreeTmpl(u,u_url,"undefined",ListBT()))
+        self.response.out.write(RenderTreeTmpl(u,u_url,None,ListBT()))
 
     def post(self):
         u,u_url = GetUserData()
