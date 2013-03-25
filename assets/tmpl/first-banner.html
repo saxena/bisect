@@ -208,13 +208,13 @@
       {{#with nodes}}
       <!-- <div id={{../id}} class="tree" data-id={{tree.id}}> -->
       <div class="tree" data-id={{tree.id}}>
-        <h2 class="node-head">{{tree.head}}</h2>
-        <p class="node-desc">{{tree.desc}}</p>
+        <h2 class="node-head">{{{tree.head}}}</h2>
+        <p class="node-desc">{{{tree.desc}}}</p>
         <span class="label label-info pull-right"></span>
         <div class="row-fluid" data-height="0">
           <div class="span12 tree-elem tree-top" data-id={{n0.id}}>
-            <h4 class="node-head">{{n0.head}}</h4>
-            <p class="node-desc">{{n0.desc}}</p>
+            <h4 class="node-head">{{{n0.head}}}</h4>
+            <p class="node-desc">{{{n0.desc}}}</p>
             <span class="label label-info pull-right"></span>
           </div>
         </div>
@@ -229,13 +229,13 @@
                 alt="64x64" style="width: 64px; height: 64px;">
               </a>
               <div class="media-body">
-                <h4 class="media-heading">{{n1.head}}</h4>
+                <h4 class="media-heading">{{{n1.head}}}</h4>
                 {{n1.desc}}
               </div>
             </div>
             -->
-            <h4 class="node-head">{{n1.head}}</h4>
-            <p class="node-desc">{{n1.desc}}</p>
+            <h4 class="node-head">{{{n1.head}}}</h4>
+            <p class="node-desc">{{{n1.desc}}}</p>
             <span class="label label-info pull-right"></span>
             <span class="on-edit">
               <button class="btn btn-mini node-modify"
@@ -250,8 +250,8 @@
             </span>
           </div>
           <div class="span6 tree-elem tree-mid" data-id={{n2.id}}>
-            <h4 class="node-head">{{n2.head}}</h4>
-            <p class="node-desc">{{n2.desc}}</p>
+            <h4 class="node-head">{{{n2.head}}}</h4>
+            <p class="node-desc">{{{n2.desc}}}</p>
             <span class="label label-info pull-right"></span>
             <span class="on-edit">
               <button class="btn btn-mini node-modify"
@@ -271,8 +271,8 @@
 
           {{#if n3}}
           <div class="span3 tree-elem tree-bot" data-id={{n3.id}}>
-            <h4 class="node-head">{{n3.head}}</h4>
-            <p class="node-desc">{{n3.desc}}</p>
+            <h4 class="node-head">{{{n3.head}}}</h4>
+            <p class="node-desc">{{{n3.desc}}}</p>
           </div>
           {{else}}
           <div class="span3 tree-elem tree-elem-empty tree-bot"
@@ -284,8 +284,8 @@
 
           {{#if n4}}
           <div class="span3 tree-elem tree-bot" data-id={{n4.id}}>
-            <h4 class="node-head">{{n4.head}}</h4>
-            <p class="node-desc">{{n4.desc}}</p>
+            <h4 class="node-head">{{{n4.head}}}</h4>
+            <p class="node-desc">{{{n4.desc}}}</p>
           </div>
           {{else}}
           <div class="span3 tree-elem tree-elem-empty tree-bot"
@@ -297,8 +297,8 @@
 
           {{#if n5}}
           <div class="span3 tree-elem tree-bot" data-id={{n5.id}}>
-            <h4 class="node-head">{{n5.head}}</h4>
-            <p class="node-desc">{{n5.desc}}</p>
+            <h4 class="node-head">{{{n5.head}}}</h4>
+            <p class="node-desc">{{{n5.desc}}}</p>
           </div>
           {{else}}
           <div class="span3 tree-elem tree-elem-empty tree-bot"
@@ -310,8 +310,8 @@
 
           {{#if n6}}
           <div class="span3 tree-elem tree-bot" data-id={{n6.id}}>
-            <h4 class="node-head">{{n6.head}}</h4>
-            <p class="node-desc">{{n6.desc}}</p>
+            <h4 class="node-head">{{{n6.head}}}</h4>
+            <p class="node-desc">{{{n6.desc}}}</p>
           </div>
           {{else}}
           <div class="span3 tree-elem tree-elem-empty tree-bot"
@@ -332,8 +332,8 @@
       <ul>
         {{#each tlist}}
         <li>
-          <a href="/tree/{{id}}">{{head}}</a>
-          <small>{{desc}}</small>
+          <a href="/tree/{{id}}">{{{head}}}</a>
+          <small>{{{desc}}}</small>
         </li>
         {{/each}}
       </ul>
@@ -355,8 +355,8 @@
       </p>
 
       <div id={{tree.id}} class="tree" data-id=-1>
-        <h2 class="node-head">{{tree.head}}</h2>
-        <p class="node-desc">{{tree.desc}}</p>
+        <h2 class="node-head">{{{tree.head}}}</h2>
+        <p class="node-desc">{{{tree.desc}}}</p>
         <span class="label label-info pull-right"></span>
       </div>
 
@@ -368,8 +368,8 @@
     <script type="text/template" id="tmpl-node">
       {% raw %}
       <div class="{{n.span}} {{n.level}} {{n.elem}}" data-id={{n.id}}>
-        <h4 class="node-head">{{n.head}}</h4>
-        <p class="node-desc">{{n.desc}}</p>
+        <h4 class="node-head">{{{n.head}}}</h4>
+        <p class="node-desc">{{{n.desc}}}</p>
         <span class="label label-info pull-right"></span>
         <span class="on-edit">
           <button class="btn btn-mini node-modify"

@@ -119,18 +119,18 @@ var TreeView = Backbone.View.extend({
         console.log("EditNode :"+id);
     },
 
-    GetNodeChild: function(target){
-        var np =  Number(target.parent().parent().data("id"));
-        if(isNaN(np)) throw "NaN";
-        return [ 2*np+1, 2*np+2 ];
-    },
-
     GetElemData: function(id){
         var elem = $("div[data-id="+id+"]");
         var head = elem.children(".node-head").html();
         var desc = elem.children(".node-desc").html();
         var node = { "id" : id, "head": head, "desc": desc };
         return node;
+    },
+
+    GetNodeChild: function(target){
+        var np =  Number(target.parent().parent().data("id"));
+        if(isNaN(np)) throw "NaN";
+        return [ 2*np+1, 2*np+2 ];
     },
 
     toggleNodeVis : function(e) {
