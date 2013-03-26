@@ -28,7 +28,11 @@
 
       /* Main marketing message and sign up button */
       .jumbotron {
+        border-top: 2px solid #DDD;
+        border-bottom: 2px solid #DDD;
+        border-radius: 10px;
         margin: 60px 0;
+        padding: 20px 10px;
         text-align: center;
       }
       .jumbotron h1 {
@@ -149,12 +153,25 @@
         </div>
       </div>
 
+      <div class="media jumbotron">
+        <a class="pull-left" href="http://en.wikipedia.org/wiki/Aikido">
+          <img class="media-object img-rounded" src="/img/morihei.jpg"
+               alt="morihei" style="width: 195px; height: 240px;">
+        </a>
+        <div class="media-body">
+          <h1 class="media-heading">Bisect</h1>
+          verb: divide into two parts.
+        </div>
+      </div>
+
+      {#
       <div class="jumbotron">
         <h1>Super Bisection!</h1>
         <p>decisions diagrams to help your users identify the source of
         their issues</p>
         <button type="button" class="btn btn-large btn-success">Create one Now!</button>
       </div>
+      #}
 
       <div id="t-tmpl-r3-test" class="tree-container"></div>
       {# <div id="mytlist" class="tree-list"></div> #}
