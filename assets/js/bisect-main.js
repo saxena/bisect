@@ -164,7 +164,7 @@ var TreeView = Backbone.View.extend({
     },
 
     toggleTreeEdit : function(enable){
-        this.$(".tree").toggleClass("well");
+        this.$(".tree").toggleClass("well well-small");
         this.$(".on-edit").toggle();
         this.$(".node-head, .node-desc").attr("contenteditable", enable);
         if (!enable) this.$("span.label").text("");
