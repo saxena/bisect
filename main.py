@@ -143,7 +143,8 @@ class TreeHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
         (r'/tree/(\w+)', TreeHandler),
-        (r'/tree', NewTreeHandler)
+        (r'/tree', NewTreeHandler),
+        ('/', NewTreeHandler),
         ], debug=True)
 
 jenv = jinja2.Environment(loader=jinja2.FileSystemLoader(
