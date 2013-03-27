@@ -18,9 +18,6 @@ handlers:
 - url: /bs
   static_dir: assets/bootstrap
 
-- url: /d3
-  static_dir: assets/d3
-
 - url: /js
   static_dir: assets/js
 
