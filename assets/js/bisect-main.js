@@ -254,3 +254,12 @@ var TreeListView = Backbone.View.extend({
     },
 
 });
+
+function _ScrollTo(to){
+    var to_pos = $(to).offset().top;
+    var hb_sel = $('html, body');
+    return function(){
+        hb_sel.animate({scrollTop:to_pos},400,"swing");
+        return false;
+    };
+};

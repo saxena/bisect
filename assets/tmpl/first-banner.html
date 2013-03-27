@@ -148,7 +148,7 @@
             <li><a>{{user}}</a></li>
             <li><a href="{{uurl|e}}">Sign Out</a></li>
             {% endif %}
-            <li><a href="#about">About</a></li>
+            <li><a id="about-btn" href="#about">About</a></li>
           </ul>
         </div>
       </div>
@@ -159,8 +159,27 @@
                alt="morihei" style="width: 195px; height: 240px;">
         </a>
         <div class="media-body">
-          <h1 class="media-heading">Bisect</h1>
-          verb: divide into two parts.
+          <blockquote>
+            <h2 class="media-heading">Bisect</h2>
+            <small>verb: divide into two parts.</small>
+          </blockquote>
+          <p>A true understanding of the underpinnings of the nature
+          of things comes from probing and testing for
+          hypotheses.</p>
+          <p>The nature of Programming consists of
+          building functional abstractions. The correctness in
+          functionality is verifiable when tested against requirement
+          of functionality. One of the fundamental problems in
+          programming is the transfer of program design across
+          individuals. The other problem is the ability to correct
+          express these concepts to other individuals. Bisect aims to
+          address both of these issues. </p>
+          <p>One of the hardest problems in transferring understanding
+          is to guard against misconceptions.</p> 
+          <p>Bisect is a tool to allow the expression of programs into
+          testable concepts. It allows the expression of functionality
+          through a series of tests. It allows for the verifiable
+          expression of concepts</p>
         </div>
       </div>
 
@@ -219,7 +238,7 @@
         </div>
       </div>
       <p class="on-edit text-info">
-        <em>Select fields in decision tree and 'tap' or 'click' to edit them</em>
+        'tap' or 'click' on nodes in bisection tree to edit.
       </p>
 
       {{#with nodes}}
@@ -428,6 +447,7 @@
       mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
       myroute = new BisectRouter();
       Backbone.history.start({pushState: true});
+      $("#about-btn").click(_ScrollTo("#about"));
       });
     </script>
   </body>
