@@ -17,7 +17,7 @@
         background-image:     -ms-linear-gradient(top left, #F0FFFF, white); /* For pre-releases of IE 10*/
         background-image:      -o-linear-gradient(top left, #F0FFFF, white); /* For old Opera (11.1 to 12.0) */
         background-image:         linear-gradient(top left, #F0FFFF, white); /* Standard syntax; must be last */
-        /*background-image:         linear-gradient(top left, #D5DDFF, #CFBAF1);*/ 
+        /*background-image:         linear-gradient(top left, #D5DDFF, #CFBAF1);*/
       }
 
       /* Custom container */
@@ -158,15 +158,23 @@
         <div class="media-body">
           <h2 class="media-heading">Bisect</h2>
           <p><small class="muted">&mdash;verb: to debug using the process of elimination.</small></p>
-          <p><strong>Bisect</strong > is a tool that allows the functional state of
-          programs to be tested against expected results. Tests
-          results are used as bisection points to eliminate and
-          narrow-down towards the root-cause of the underlying issue</p>
-          <p><strong>Module owners construct bisection trees</strong> by checking for
-          signs for failure at the system level and creating bisection
-          points that lead towards module level root-causes.</p>
-          <p><strong>All users</strong> leverage the bisection tree to help narrow-down
-          to the root-cause of the problem</p>
+
+          <p><strong>Bisect</strong> allows users to test program state against
+          expected values. Tests results are used as bisection points
+          to narrow-down towards the root-cause of the underlying
+          issue.</p>
+
+          <p><strong>Module owners</strong> employ their grasp of
+          system architecture to construct a decision tree by
+          arranging bisection point that first test for anomalous
+          behavior at the system level and later narrow down to module
+          level root-causes.</p>
+
+          <p><strong>Customer engineering, Software Test Teams and New
+          developers</strong> can integrate bisection trees with
+          continuous automation to quickly classify and narrow-down
+          the source of the problem and gain better system
+          understanding in the process.</p>
           {#
           <p>One of the fundamental problems in programming is the
           transfer of program design across individuals. The other
@@ -181,7 +189,7 @@
           functionality is verifiable when tested against requirement
           of functionality.</p>
           <p>One of the hardest problems in transferring understanding
-          is to guard against misconceptions.</p> 
+          is to guard against misconceptions.</p>
           #}
         </div>
       </div>
