@@ -21,49 +21,49 @@ var new_tree =
         n0:
         {
             id:0,
-            head:"-> Ask the first bisection question here <-",
+            head:"> Ask the first bisection question here <",
             desc:"The first bisection sets the scope for the bisection at the highest level. The answer to the above question determines whether the next bisection point lies to the left or the right.",
         },
 
         n1:
         {
             id:1,
-            head:"Answer is YES: Ask follow-up question?",
+            head:"Answer is Yes: Ask follow-up question?",
             desc:"Provide a description of the current state.",
         },
 
         n2:
         {
             id:2,
-            head:"Answer is NO: Ask follow-up question?",
+            head:"Answer is No: Ask follow-up question?",
             desc:"Provide a description of the current state.",
         },
 
         n3:
         {
             id:3,
-            head:"YES: Follow-up question?",
+            head:"Yes: Follow-up question?",
             desc:"Describe the situation here",
         },
 
         n4:
         {
             id:4,
-            head:"NO: Follow-up question?",
+            head:"No: Follow-up question?",
             desc:"Keep the user informed!",
         },
 
         n5:
         {
             id:5,
-            head:"YES: Follow-up question?",
+            head:"Yes: Follow-up question?",
             desc:"This is a known issue. Inform the user.",
         },
 
         n6:
         {
             id:6,
-            head:"NO: Follow-up question?",
+            head:"No: Follow-up question?",
             desc:"This is a new issue. File bug report.",
         },
 
