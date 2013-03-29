@@ -8,50 +8,65 @@ var myroute;
 
 var new_tree =
 {
-    //id :"t1", -- not present on "NEW" objects
+    //id :-- not present on the template
     nodes :
     {
         tree:
         {
             id:-1,
-            head:"A Tree",
-            desc:"A Brief description of Tree"
+            head:"Example bisection tree (Edit to start using as a template)",
+            desc:"Description of the tree: Provide an overview of the scenario being bisected."
         },
 
         n0:
         {
             id:0,
-            head:"Top Root",
-            desc:"Data for Top Root",
+            head:"-> Ask the first bisection question here <-",
+            desc:"The first bisection sets the scope for the bisection at the highest level. The answer to the above question determines whether the next bisection point lies to the left or the right.",
         },
 
         n1:
         {
             id:1,
-            head:"Mid Root",
-            desc:"Data for Left Mid Root",
+            head:"Answer is YES: Ask follow-up question?",
+            desc:"Provide a description of the current state.",
         },
 
         n2:
         {
             id:2,
-            head:"Mid Root",
-            desc:"Data for Mid Root",
+            head:"Answer is NO: Ask follow-up question?",
+            desc:"Provide a description of the current state.",
         },
 
         n3:
         {
             id:3,
-            head:"Bot Leaf",
-            desc:"Data for Left Bot Leaf",
+            head:"YES: Follow-up question?",
+            desc:"Describe the situation here",
         },
 
         n4:
         {
             id:4,
-            head:"Bot Leaf",
-            desc:"Data for Right Bot Leaf",
+            head:"NO: Follow-up question?",
+            desc:"Keep the user informed!",
         },
+
+        n5:
+        {
+            id:5,
+            head:"YES: Follow-up question?",
+            desc:"This is a known issue. Inform the user.",
+        },
+
+        n6:
+        {
+            id:6,
+            head:"NO: Follow-up question?",
+            desc:"This is a new issue. File bug report.",
+        },
+
    }
 };
 
