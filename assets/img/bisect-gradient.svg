@@ -1,0 +1,35 @@
+<svg width="75" height="75" xmlns="http://www.w3.org/2000/svg">
+ <title>Bisect</title>
+ <defs>
+  <linearGradient id="svg_2">
+   <stop offset="0" stop-color="#cccccc"/>
+   <stop offset="1" stop-color="#333333"/>
+  </linearGradient>
+  <linearGradient id="svg_4">
+   <stop offset="0" stop-color="#cccccc"/>
+   <stop offset="1" stop-color="#333333"/>
+  </linearGradient>
+  <linearGradient y2="1" x2="0" y1="0" x1="0" id="svg_5">
+   <stop offset="0" stop-color="#cccccc"/>
+   <stop offset="1" stop-color="#333333"/>
+  </linearGradient>
+  <linearGradient y1="0" x1="0" y2="1" x2="0.015625" id="svg_6">
+   <stop offset="0" stop-color="#333333"/>
+   <stop offset="1" stop-color="#cccccc"/>
+  </linearGradient>
+  <linearGradient y1="0" x1="0" y2="1" x2="0.015625" id="svg_7">
+   <stop offset="0" stop-color="#333333"/>
+   <stop offset="1" stop-opacity="0.996094" stop-color="#111111"/>
+  </linearGradient>
+  <linearGradient y1="0" x1="0" y2="1" x2="0.015625" id="svg_8">
+   <stop offset="0" stop-opacity="0.996094" stop-color="#666666"/>
+   <stop offset="1" stop-opacity="0.996094" stop-color="#111111"/>
+  </linearGradient>
+ </defs>
+ <!-- inorg.org (c) 2013 - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Bisect</title>
+  <circle id="svg_1" r="33.67863" cy="37.5" cx="37.5" stroke-width="2" stroke="url(#svg_5)" fill="url(#svg_8)"/>
+  <path stroke="url(#svg_2)" transform="rotate(90 37.5 34.75)" id="svg_3" d="m50.86554,61.038757l6.506409,-5.09832l6.503052,-5.099339l-6.5065,-5.103016l-6.50296,-5.099335l0,5.670033c-1.594341,0 -3.446178,0 -4.066761,0c-2.958889,0.114124 -6.610577,-3.048618 -10.49543,-7.12825c-1.447838,-1.430038 -2.909607,-3.002396 -4.457439,-4.42392c1.547832,-1.42239 3.007511,-2.994839 4.457439,-4.423901c3.884853,-4.072104 7.536541,-7.242376 10.491341,-7.126341l4.07085,-0.002838l0,5.677479l6.50296,-5.101126l6.5065,-5.103022l-6.5065,-5.111581l-6.50296,-5.104041l0,5.675661l-4.068771,0c-6.04287,0.116024 -10.558617,4.991728 -14.510838,8.955336c-3.923,4.18144 -7.449041,7.331934 -9.49453,7.126324l-11.666401,0l0,9.06003l11.670601,0c2.042669,-0.204678 5.570789,2.945839 9.493809,7.126362c3.950119,3.966412 8.464489,8.840302 14.509369,8.956329l4.066761,0l0,5.677475l0,0l0,0z" stroke-linejoin="round" stroke-dasharray="null" stroke-width="2" fill="#ffffff"/>
+ </g>
+</svg>
