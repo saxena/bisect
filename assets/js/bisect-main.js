@@ -124,8 +124,6 @@ var TreeView = Backbone.View.extend({
     },
 
     clickEditHandler: function(e){
-        //var esc = e.which === 27;
-        //var ret = e.which === 13;
         var tree_elem = $(e.target).parent();
         var id = tree_elem.data("id");
         //Mark tree-elem as edited
@@ -141,7 +139,8 @@ var TreeView = Backbone.View.extend({
         var elem = $("div[data-id="+id+"]");
         var head = elem.children(".node-head").html();
         var desc = elem.children(".node-desc").html();
-        var node = { "id" : id, "head": head, "desc": desc };
+        var regex = elem.children(".node-regex").html();
+        var node = { "id" : id, "head": head, "regex": regex, "desc": desc };
         return node;
     },
 
@@ -152,13 +151,13 @@ var TreeView = Backbone.View.extend({
     },
 
     toggleNodeVis : function(e) {
-        //TODO: Provide data-pid in child nodes for jquery selection generation
         var vis;
         var sel_c0 = $("div[data-id="+e+"]");
         sel_c0.toggleClass("tree-elem-empty");
         vis = !sel_c0.hasClass("tree-elem-empty");
         this.VisList[e] = vis;
-        sel_c0.children(".node-head, .node-desc").attr("contenteditable", vis);
+        sel_c0.children(".node-head, .node-regex, .node-desc")
+            .attr("contenteditable", vis);
         return vis;
     },
 
