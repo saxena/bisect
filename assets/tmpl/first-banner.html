@@ -79,15 +79,12 @@
         outline: 1px dotted;
       }
 
-      .node-regex {
-        text-decoration:underline;
-      }
-
-      .node-regex:before {
+      .node-desc {
+        margin: 10px 0;
       }
 
       /* Turn on Visibility */
-      .on-edit{
+      .on-edit {
         display: none;
       }
 
@@ -275,7 +272,7 @@
         <div class="row-fluid" data-height="0">
           <div class="span12 tree-elem tree-top" data-id={{n0.id}}>
             <h4 class="node-head">{{{n0.head}}}</h4>
-            <p class="node-regex">{{{n0.regex}}}</p>
+            <code class="node-regex">{{{n0.regex}}}</code>
             <p class="node-desc">{{{n0.desc}}}</p>
             <span class="label label-info pull-right"></span>
           </div>
@@ -284,7 +281,7 @@
         <div class="row-fluid" data-height="1">
           <div class="span6 tree-elem tree-mid" data-id={{n1.id}}>
             <h4 class="node-head">{{{n1.head}}}</h4>
-            <p class="node-regex">{{{n1.regex}}}</p>
+            <code class="node-regex">{{{n1.regex}}}</code>
             <p class="node-desc">{{{n1.desc}}}</p>
             <span class="label label-info pull-right"></span>
             <span class="on-edit">
@@ -301,7 +298,7 @@
           </div>
           <div class="span6 tree-elem tree-mid" data-id={{n2.id}}>
             <h4 class="node-head">{{{n2.head}}}</h4>
-            <p class="node-regex">{{{n2.regex}}}</p>
+            <code class="node-regex">{{{n2.regex}}}</code>
             <p class="node-desc">{{{n2.desc}}}</p>
             <span class="label label-info pull-right"></span>
             <span class="on-edit">
