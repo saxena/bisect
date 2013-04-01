@@ -21,7 +21,8 @@ var new_tree =
         n0:
         {
             id:0,
-            head:"> Ask the first bisection question here <",
+            head:"Ask the first bisection question here",
+            regex:"error:",
             desc:"The first bisection sets the scope for the bisection at the highest level. The answer to the above question determines whether the next bisection point lies to the left or the right.",
         },
 
@@ -29,6 +30,7 @@ var new_tree =
         {
             id:1,
             head:"Answer is Yes: Ask follow-up question?",
+            regex:"not found",
             desc:"Provide a description of the current state.",
         },
 
@@ -36,6 +38,7 @@ var new_tree =
         {
             id:2,
             head:"Answer is No: Ask follow-up question?",
+            regex:"warning:",
             desc:"Provide a description of the current state.",
         },
 
@@ -181,7 +184,7 @@ var TreeView = Backbone.View.extend({
     toggleTreeEdit : function(enable){
         this.$(".tree").toggleClass("well well-small");
         this.$(".on-edit").toggle();
-        this.$(".node-head, .node-desc").attr("contenteditable", enable);
+        this.$(".node-head, .node-desc, .node-regex").attr("contenteditable", enable);
         if (!enable) this.$("span.label").text("");
     },
 
