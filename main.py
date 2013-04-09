@@ -100,6 +100,7 @@ def RenderTreeTmpl(u,u_url,tree,t_list):
         "user": u.nickname() if u else None,
         "uurl": u_url
     })
+
 ####################
 class NewTreeHandler(webapp2.RequestHandler):
     def get(self):
@@ -141,9 +142,21 @@ class TreeHandler(webapp2.RequestHandler):
             self.response.status_int = 202 if status else 404
             self.response.write(json.dumps(status))
 
+class BisectHandler(webapp2.RequestHandler):
+    def post(self, tree_id):
+        u = users.get_current_user()
+        tree = UserCanGetBT(u, int(tree_id)):
+        if tree :
+            text = self.request.body
+            result = BisectBT(json.loads(tree.nodes), text)
+            self.response.write(json.dumps(result))
+        else:
+            self.response.status_int = 403
+
 app = webapp2.WSGIApplication([
         (r'/tree/(\w+)', TreeHandler),
         (r'/tree', NewTreeHandler),
+        (r'/bisect/(\w+)',BisectHandler),
         ('/', NewTreeHandler),
         ], debug=True)
 
