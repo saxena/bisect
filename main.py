@@ -9,6 +9,8 @@ import logging
 from google.appengine.ext import db
 from google.appengine.api import users
 
+from treebisect import BisectBT
+
 ####################
 def GetBTDesc(tree):
     #HACK overwriting id: "tree" id is always encoded as -1
@@ -145,7 +147,7 @@ class TreeHandler(webapp2.RequestHandler):
 class BisectHandler(webapp2.RequestHandler):
     def post(self, tree_id):
         u = users.get_current_user()
-        tree = UserCanGetBT(u, int(tree_id)):
+        tree = UserCanGetBT(u, int(tree_id))
         if tree :
             text = self.request.body
             result = BisectBT(json.loads(tree.nodes), text)
