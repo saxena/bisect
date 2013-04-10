@@ -9,8 +9,8 @@ handlers:
   static_files: assets/img/favicon.ico
   upload: assets/img/favicon\.ico
 
-- url: /html
-  static_dir: assets/html
+- url: /rapico
+  static_dir: assets/rapico
 
 - url: /img
   static_dir: assets/img

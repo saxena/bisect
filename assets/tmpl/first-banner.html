@@ -105,6 +105,24 @@
         background-color:#aaa;
       }
 
+      /* Raph icons */
+      @font-face {
+        font-family: 'RaphaelIcons';
+        src: url('/rapico/raphaelicons-webfont.eot');
+        src: local('☺'), url('/rapico/raphaelicons-webfont.woff') format('woff'), url('/rapico/raphaelicons-webfont.ttf') format('truetype'), url('/rapico/raphaelicons-webfont.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      .rapico {
+        font-weight: normal;
+        font-style: normal;
+        line-height: normal;
+        font-family: 'RaphaelIcons';
+        font-size: 6em;
+        position: relative;
+      }
+
       /* Tree Coloring */
       /*
       .tree-top {
@@ -156,11 +174,13 @@
       </div>
 
       <div class="media jumbotron tree-container">
+        {#
         <a class="pull-left"
            href="http://en.wikipedia.org/wiki/Aikido" target="_blank">
           <img class="media-object img-rounded" src="/img/morihei.jpg"
                alt="morihei" style="width: 195px; height: 240px;">
         </a>
+        #}
         <div class="media-body">
           <h2 class="media-heading">Bisect</h2>
           <p><small class="muted">&mdash;verb: to debug using the process of
@@ -199,16 +219,49 @@
           is to guard against misconceptions.</p>
           #}
         </div>
-      </div>
 
-      {#
-      <div class="jumbotron">
-        <h1>Super Bisection!</h1>
-        <p>decisions diagrams to help your users identify the source of
-        their issues</p>
-        <button type="button" class="btn btn-large btn-success">Create one Now!</button>
+        <div class="row-fluid" style="border-top:2px dotted #DDD; padding-top:20px">
+
+          <div class="span4">
+            <div class="media">
+              <div class="pull-left">
+                <span class="media-object rapico">Ç</span>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Debug</h4>
+                Construct bisection trees to codify decision making and
+                debugging
+              </div>
+            </div>
+          </div>
+
+          <div class="span4">
+            <div class="media">
+              <div class="pull-left">
+                <span class="media-object rapico">Ñ</span>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Automate</h4>
+                HTTP POST to automate bisections as part of CI
+              </div>
+            </div>
+          </div>
+
+          <div class="span4">
+            <div class="media">
+              <div class="pull-left">
+                <span class="media-object rapico">K</span>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Disseminate</h4>
+                Communicate design intent using bisection trees
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      #}
 
       <div id="t-tmpl-r3-test" class="tree-container"></div>
       {# <div id="mytlist" class="tree-list"></div> #}
