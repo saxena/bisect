@@ -242,7 +242,8 @@
               </div>
               <div class="media-body">
                 <h4 class="media-heading">Automate</h4>
-                HTTP POST to automate bisections as part of CI
+                HTTP POST to automate bisections as part of
+                CI <a id="ci-btn" href="#ci-seg">See example</a>
               </div>
             </div>
           </div>
@@ -266,6 +267,15 @@
       <div id="t-tmpl-r3-test" class="tree-container"></div>
       {# <div id="mytlist" class="seg-container"></div> #}
       <div id="recenttlist" class="seg-container"></div>
+
+      <div id="ci-seg" class="seg-container">
+        <h3>Automate Bisections</h3>
+        <pre>$curl -d @-  http://www.bisect.cc/bisect/5764607523034234880
+test-regex-0
+test-regex-1
+^D
+{"head": "Yes: Follow-up question?", "id": 3, "desc": "Describe the situation here"}</pre>
+      </div>
 
       <div class="navbar" style="margin-bottom:0;">
         <div class="navbar-inner">
@@ -528,6 +538,7 @@
       myroute = new BisectRouter();
       Backbone.history.start({pushState: true});
       $("#about-btn").click(_ScrollTo("#about"));
+      $("#ci-btn").click(_ScrollTo("#ci-seg"));
       });
     </script>
   </body>
