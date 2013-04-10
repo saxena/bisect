@@ -22,7 +22,7 @@ var new_tree =
         {
             id:0,
             head:"Ask the first bisection question here",
-            regex:"error:",
+            regex:"test-regex-0",
             desc:"The first bisection sets the scope for the bisection at the highest level. The answer to the above question determines whether the next bisection point lies to the left or the right.",
         },
 
@@ -30,7 +30,7 @@ var new_tree =
         {
             id:1,
             head:"Answer is Yes: Ask follow-up question?",
-            regex:"not found",
+            regex:"test-regex-1",
             desc:"Provide a description of the current state.",
         },
 
@@ -38,7 +38,7 @@ var new_tree =
         {
             id:2,
             head:"Answer is No: Ask follow-up question?",
-            regex:"warning:",
+            regex:"test-regex-2",
             desc:"Provide a description of the current state.",
         },
 
