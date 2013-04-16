@@ -198,7 +198,8 @@
                 <div class="media-body">
                   <h4 class="media-heading">Debug</h4>
                   Construct bisection trees to codify decision making and
-                  debugging
+                  debugging<br>
+                  <a id="dbg-btn" href="#t-tmpl-r3-test">Scroll to example</a>
                 </div>
               </div>
             </div>
@@ -211,7 +212,7 @@
                 <div class="media-body">
                   <h4 class="media-heading">Automate</h4>
                   HTTP POST to automate bisections as part of
-                  CI <a id="ci-btn" href="#ci-seg">See example</a>
+                  CI <a id="ci-btn" href="#ci-seg">Scroll to example</a>
                 </div>
               </div>
             </div>
@@ -222,15 +223,15 @@
                   <span class="media-object rapico">K</span>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading">Disseminate</h4>
-                  Communicate design intent using bisection trees
+                  <h4 class="media-heading">Communicate</h4>
+                  Convey your design intent using bisection trees
                 </div>
               </div>
             </div>
 
           </div>
 
-          <p><strong>Module owners</strong> employ their grasp of
+          <p style="margin-top:10px;"><strong>Module owners</strong> employ their grasp of
           system architecture to construct a decision tree by
           arranging bisection point that first test for anomalous
           behavior at the system level and later narrow down to module
@@ -545,6 +546,7 @@ bar does not match
       Backbone.history.start({pushState: true});
       $("#about-btn").click(_ScrollTo("#about"));
       $("#ci-btn").click(_ScrollTo("#ci-seg"));
+      $("#dbg-btn").click(_ScrollTo("#t-tmpl-r3-test"));
       });
     </script>
   </body>
