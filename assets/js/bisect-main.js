@@ -14,16 +14,16 @@ var new_tree =
         tree:
         {
             id:-1,
-            head:"Example bisection tree (Edit to start using as a template)",
-            desc:"Description of the tree: Provide an overview of the scenario being bisected."
+            head:"Example bisection (Edit to create your own)",
+            desc:"Provide an overview of the scenario being bisected."
         },
 
         n0:
         {
             id:0,
-            head:"Ask the first bisection question here",
-            regex:"test-regex-0",
-            desc:"The first bisection sets the scope for the bisection at the highest level. The answer to the above question determines whether the next bisection point lies to the left or the right.",
+            head:"Ask the first question here",
+            regex:"first-regex",
+            desc:"If answer is yes (or 'first-regex' matches) the next bisection lies to the left otherwise to right.",
         },
 
         n1:
