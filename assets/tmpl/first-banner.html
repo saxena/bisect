@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Inorg &middot; Bisect (beta)</title>
+    <title>Bisect (beta)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -58,7 +58,7 @@
         text-align: center;
       }
 
-      /* Inorg Specific CSS*/
+      /* Bisect Specific CSS*/
 
       .tree-container {
         border-top: 2px solid #DDD;
@@ -160,7 +160,7 @@
 
       <div class="navbar">
         <div class="navbar-inner">
-          <a class="brand" href="#">Inorg Bisect <small class="muted">(beta)</small></a>
+          <a class="brand" href="#">Bisect <small class="muted">(beta)</small></a>
           <ul class="nav pull-right">
             {% if user is none %}
             <li><a href="{{uurl|e}}">Sign In</a></li>
@@ -197,8 +197,8 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">Debug</h4>
-                  Construct bisection trees to codify decision making and
-                  debugging<br>
+                  Create bisection trees to codify
+                  repetitive tests used in debug<br>
                   <a id="dbg-btn" href="#t-tmpl-r3-test">Scroll to example</a>
                 </div>
               </div>
@@ -211,8 +211,9 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">Automate</h4>
-                  HTTP POST to automate bisections as part of
-                  CI <a id="ci-btn" href="#ci-seg">Scroll to example</a>
+                  Automate debugging by HTTP POSTing log output to
+                  bisection trees<br>
+                  <a id="ci-btn" href="#ci-seg">Scroll to example</a>
                 </div>
               </div>
             </div>
@@ -224,30 +225,32 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">Communicate</h4>
-                  Convey your design intent using bisection trees
+                  Document design intent for benefit of Developers, QA and Customer Engineering.
                 </div>
               </div>
             </div>
 
           </div>
 
-          <p style="margin-top:10px;"><strong>Module owners</strong> employ their grasp of
-          system architecture to construct a decision tree by
-          arranging bisection point that first test for anomalous
-          behavior at the system level and later narrow down to module
-          level root-causes.</p>
-
-          <p><strong>Customer engineering, Software Test Teams and New
-          developers</strong> can integrate bisection trees with
-          continuous automation to quickly classify and narrow-down
-          the source of the problem and gain better system
-          understanding in the process.</p>
-
+          <p style="margin-top:10px;"><strong>Bisect</strong> is a
+          debug and log analysis service for developers. It uses
+          HTTP to plug into automation systems and act as the
+          first line of analysis for crashes and exceptions.</p>
           {#
           <p><strong>Bisect</strong> allows users to test program state against
           expected values. Tests results are used as bisection points
           to narrow-down towards the root-cause of the underlying
           issue.</p>
+          <p><strong>Customer engineering, Software Test Teams and New
+          developers</strong> can integrate bisection trees with
+          continuous integration to quickly classify and narrow-down
+          the source of the problem and gain better system
+          understanding in the process.</p>
+          <p style="margin-top:10px;"><strong>Module owners</strong> employ their grasp of
+          system architecture to construct a decision tree by
+          arranging bisection point that first test for anomalous
+          behavior at the system level and later narrow down to module
+          level root-causes.</p>
           <p>One of the fundamental problems in programming is the
           transfer of program design across individuals. The other
           problem is the ability to correct express these concepts to
