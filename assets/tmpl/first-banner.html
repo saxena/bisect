@@ -160,7 +160,7 @@
 
       <div class="navbar">
         <div class="navbar-inner">
-          <a class="brand" href="#">Bisect <small class="muted">(beta)</small></a>
+          <a class="brand" href="#">Bisect <small class="muted">(log analysis for devs)</small></a>
           <ul class="nav pull-right">
             {% if user is none %}
             <li><a href="{{uurl|e}}">Sign In</a></li>
@@ -184,10 +184,9 @@
 
         <div class="media-body">
           <h2 class="media-heading">Bisect</h2>
-          <p><small class="muted">&mdash;verb: to debug using the process of elimination.</small></p>
-          <p class="lead" style="margin-top:10px;">Bisect is a log analysis service for developers.</p>
-          <p class="lead">Developers create decision trees (with reg-exes) that test log output for errors.</p>
-          <p class="lead">An HTTP POST request is used to test logs output against a decision tree.</p>
+          <p class="muted">&mdash;verb: to debug using the process of elimination.</p>
+          <p class="lead" style="margin-top:10px;">Developers create decision trees (with reg-exes) that use bisection to classify issues.</p>
+          <p class="lead">An HTTP POST request is used to test log data against a decision tree.</p>
 
           <div class="row-fluid" style="border-top:2px dotted #DDD; padding-top:20px">
 
