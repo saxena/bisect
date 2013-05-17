@@ -184,16 +184,12 @@
 
         <div class="media-body">
           <h2 class="media-heading">Bisect</h2>
-          <p><small class="muted">&mdash;verb: to debug using the process of
-              elimination.</small></p>
+          <p><small class="muted">&mdash;verb: to debug using the process of elimination.</small></p>
+          <p class="lead" style="margin-top:10px;">Bisect is a log analysis service for developers.</p>
+          <p class="lead">Developers create decision trees (with reg-exes) that test log output for errors.</p>
+          <p class="lead">An HTTP POST request is used to test logs output against a decision tree.</p>
 
-          <p class="lead" style="margin-top:10px;">Bisect is a
-          debug and log analysis service for developers</p>
-          <p class="lead">Developers create decision trees with reg-exes that check log output for errors</p>
-          <p class="lead">Log output checking is automated by
-          piping logs to the service using HTTP POST</p>
-          <div class="row-fluid"
-               style="border-top:2px dotted #DDD; padding-top:20px">
+          <div class="row-fluid" style="border-top:2px dotted #DDD; padding-top:20px">
 
             <div class="span4">
               <div class="media">
@@ -202,8 +198,7 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">Debug</h4>
-                  Create bisection trees to codify
-                  repetitive checks<br>
+                  Create decision trees to codify repetitive checks<br>
                   <a id="dbg-btn" href="#t-tmpl-r3-test">Scroll to example</a>
                 </div>
               </div>
@@ -216,8 +211,7 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">Automate</h4>
-                  Automate debugging by HTTP POSTing log output to
-                  bisection trees<br>
+                  Integrate with Continuous Integration by using POST API<br>
                   <a id="ci-btn" href="#ci-seg">Scroll to example</a>
                 </div>
               </div>
@@ -272,21 +266,23 @@
 
       </div>
 
+      <div id="t-tmpl-r3-test" class="tree-container"></div>
+      {# <div id="mytlist" class="seg-container"></div> #}
+      <div id="recenttlist" class="seg-container"></div>
+
       <div id="ci-seg" class="seg-container">
         <h3>Automate Bisections</h3>
-        <pre>$curl -d @-  http://www.bisect.cc/bisect/42
+        <pre>
+$curl -d @-  http://www.bisect.cc/bisect/42
 log text
 first-regex
 log text
 test-regex-1
 log text
 ^D
-{"head": "Yes: Follow-up question?", "id": 3, "desc": "Describe the situation here"}</pre>
+{"head": "Yes: Follow-up question?", "id": 3, "desc": "Describe the situation here"}
+        </pre>
       </div>
-
-      <div id="t-tmpl-r3-test" class="tree-container"></div>
-      {# <div id="mytlist" class="seg-container"></div> #}
-      <div id="recenttlist" class="seg-container"></div>
 
       <div class="navbar" style="margin-bottom:0;">
         <div class="navbar-inner">
