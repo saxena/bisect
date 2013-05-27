@@ -160,7 +160,8 @@
 
       <div class="navbar">
         <div class="navbar-inner">
-          <a class="brand" href="#">Bisect <small class="muted">(log analysis for devs)</small></a>
+          <a class="brand"
+          href="#">Bisect <small class="muted">(canned log analysis for devs)</small></a>
           <ul class="nav pull-right">
             {% if user is none %}
             <li><a href="{{uurl|e}}">Sign In</a></li>
@@ -183,47 +184,51 @@
         #}
 
         <div class="media-body">
+          <!--
           <h2 class="media-heading">Bisect</h2>
-          <p class="muted">&mdash;verb: to debug using the process of elimination.</p>
-          <p class="lead" style="margin-top:10px;">Developers create decision trees (with reg-exes) that use bisection to classify issues.</p>
-          <p class="lead">An HTTP POST request is used to send and test log data against a tree.</p>
+          <p class="muted">&mdash;verb: to debug using the process of
+          elimination.</p>
+          -->
+          <p class="lead">Your manual triage efforts are no
+          match for the failures that are exhibited by a complex
+          continuously integrated system sourcing from hundreds of
+          developers.</p>
+
+          <p class="lead">Use <strong>Bisect</strong> to create canned triage steps
+          and let it scan logs for failures.</p>
+
+          <p class="lead">Never perform a mind numbing debug again.</p>
 
           <div class="row-fluid" style="border-top:2px dotted #DDD; padding-top:20px">
 
             <div class="span4">
               <div class="media">
-                <div class="pull-left">
-                  <span class="media-object rapico">Ç</span>
-                </div>
+                <span class="media-object rapico">Ç</span>
                 <div class="media-body">
-                  <h4 class="media-heading">Debug</h4>
-                  Create decision trees to codify repetitive checks<br>
-                  <a id="dbg-btn" href="#t-tmpl-r3-test">Scroll to example</a>
+                  <p class="lead"><strong>Debug</strong><br>
+                  Create decision trees to codify repetitive triage steps<br>
+                  <a id="dbg-btn" href="#t-tmpl-r3-test">Scroll to example</a></p>
                 </div>
               </div>
             </div>
 
             <div class="span4">
               <div class="media">
-                <div class="pull-left">
-                  <span class="media-object rapico">Ñ</span>
-                </div>
+                <span class="media-object rapico">Ñ</span>
                 <div class="media-body">
-                  <h4 class="media-heading">Automate</h4>
+                  <p class="lead"><strong>Automate</strong><br>
                   Integrate with Continuous Integration by using POST API<br>
-                  <a id="ci-btn" href="#ci-seg">Scroll to example</a>
+                  <a id="ci-btn" href="#ci-seg">Scroll to example</a></p>
                 </div>
               </div>
             </div>
 
             <div class="span4">
               <div class="media">
-                <div class="pull-left">
-                  <span class="media-object rapico">K</span>
-                </div>
+                <span class="media-object rapico">K</span>
                 <div class="media-body">
-                  <h4 class="media-heading">Communicate</h4>
-                  Document design intent for benefit of Developers, QA and Customer Engineering.
+                  <p class="lead"><strong>Communicate</strong><br>
+                  Document design intent for benefit of Developers, QA and Customer Engineering.</p>
                 </div>
               </div>
             </div>
@@ -261,9 +266,9 @@
           is to guard against misconceptions.</p>
           #}
 
-        </div>
+        </div> <!-- media-body-->
 
-      </div>
+      </div> <!-- media-->
 
       <div id="t-tmpl-r3-test" class="tree-container"></div>
       {# <div id="mytlist" class="seg-container"></div> #}
