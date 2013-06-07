@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bisect (beta)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/bs/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        background-color: #F0FFFF; /* fallback color if gradients are not supported */
+        background-image: -webkit-linear-gradient(top left, #F0FFFF, white); /* For Chrome and Safari */
+        background-image:    -moz-linear-gradient(top left, #F0FFFF, white); /* For old Fx (3.6 to 15) */
+        background-image:     -ms-linear-gradient(top left, #F0FFFF, white); /* For pre-releases of IE 10*/
+        background-image:      -o-linear-gradient(top left, #F0FFFF, white); /* For old Opera (11.1 to 12.0) */
+        background-image:         linear-gradient(top left, #F0FFFF, white); /* Standard syntax; must be last */
+        /*background-image:         linear-gradient(top left, #D5DDFF, #CFBAF1);*/
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 768px;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      /* Missing from BS */
+      .text-left {
+        text-align: left;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      /* Bisect Specific CSS*/
+
+      .tree-container {
+        border-top: 2px solid #DDD;
+        border-bottom: 2px solid #DDD;
+        border-radius: 10px;
+        padding: 20px 10px;
+      }
+
+      .seg-container {
+        border-top: 2px solid #DDD;
+        border-bottom: 2px solid #DDD;
+        border-radius: 10px;
+        margin: 30px 0;
+        padding: 10px;
+      }
+
+      [contenteditable=true]:hover:not(:focus) {
+        outline: 1px dotted;
+      }
+
+      .node-desc {
+        margin: 10px 0;
+      }
+
+      /* Turn on Visibility */
+      .on-edit {
+        display: none;
+      }
+
+      /* Node Formatting */
+      .tree-elem-empty {
+        opacity:0;
+        cursor:default;
+      }
+
+      /* Tree Formatting */
+      .tree-elem {
+        -webkit-box-shadow: 3px 3px 3px #1c1c1c;
+        box-shadow: 3px 3px 3px #1c1c1c;
+        border-radius:3px;
+        margin-top:4px;
+        padding:4px;
+        text-align:center;
+        background-color:#aaa;
+      }
+
+      /* Raph icons */
+      @font-face {
+        font-family: 'RaphaelIcons';
+        src: url('/rapico/raphaelicons-webfont.eot');
+        src: local('☺'), url('/rapico/raphaelicons-webfont.woff') format('woff'), url('/rapico/raphaelicons-webfont.ttf') format('truetype'), url('/rapico/raphaelicons-webfont.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      .rapico {
+        font-weight: normal;
+        font-style: normal;
+        line-height: normal;
+        font-family: 'RaphaelIcons';
+        font-size: 6em;
+        position: relative;
+      }
+
+      /* Tree Coloring */
+      /*
+      .tree-top {
+        background-color:#ccc;
+      }
+
+      .tree-mid {
+        background-color:#aaa;
+      }
+
+      .tree-bot {
+        background-color:#777;
+      }
+      */
+    </style>
+    <link href="/bs/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon" sizes="256x256" href="/img/bisect_256x256x32.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/img/bisect_128x128x32.png">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="container-narrow">
+
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand"
+          href="#">Bisect <small class="muted">(canned log analysis for devs)</small></a>
+          <ul class="nav pull-right">
+            {% if user is none %}
+            <li><a href="{{uurl|e}}">Sign In</a></li>
+            {% else %}
+            <li><a>{{user}}</a></li>
+            <li><a href="{{uurl|e}}">Sign Out</a></li>
+            {% endif %}
+            <li><a id="about-btn" href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+
+      {% block market_splash %}{%endblock market_splash%}
+
+      <div id="t-tmpl-r3-test" class="tree-container"></div>
+
+      {# <div id="mytlist" class="seg-container"></div> #}
+
+      <div id="recenttlist" class="seg-container"></div>
+
+      {% block rest_example %}{%endblock rest_example%}
+
+      <div class="navbar" style="margin-bottom:0;">
+        <div class="navbar-inner">
+          <footer id="about" class="footer">
+            <div class="row-fluid">
+              <div class="span6">
+                <div class="media text-left" style="margin-left:10px">
+                  <a class="pull-left" target="_blank" href="http://twitter.com/rksio">
+                    <img class="media-object img-circle" src="/img/rksio.jpg"
+                         alt="@rksio" style="width: 64px; height: 64px;"></a>
+                  <div class="media-body">
+                    <h4 class="media-heading">Bisect</h4>
+                    Bisect allows developers to create and share their
+                    expertise by constructing binary decision trees.
+                    <br>
+                    <strong>By Rahul Saxena <a target="_blank"
+                    href="http://twitter.com/rksio">@rksio</a> <a href="mailto:rks@bisect.cc">rks@bisect.cc</a></strong>
+                  </div>
+                </div>
+              </div>
+              <div class="span6">
+                <p class="muted">&middot; Made organically in Boulder, CO &middot;</p>
+                <!-- <p>Inorg.org &copy; 2013</p> -->
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    {% raw %}
+    <!-- Le templates
+    ================================================== -->
+    <script type="text/template" id="tmpl-tree">
+      <div class="btn-toolbar">
+        <button class="btn btn-small
+        act-edit"><i class="icon-edit"></i> Edit Tree</button>
+        <div class="btn-group pull-right">
+          <button class="btn btn-small disabled
+          act-save" disabled="disabled"><i class="icon-ok"></i> Save</button>
+          <button class="btn btn-small disabled
+          act-cancel" disabled="disabled"><i class="icon-remove"></i> Revert</button>
+        </div>
+      </div>
+      <p class="on-edit text-info">
+        'tap' or 'click' on nodes in bisection tree to edit.
+      </p>
+
+      {{#with nodes}}
+      <!-- <div id={{../id}} class="tree" data-id={{tree.id}}> -->
+      <div class="tree" data-id={{tree.id}}>
+        <h3 class="node-head">{{{tree.head}}}</h3>
+        <p class="node-desc">{{{tree.desc}}}</p>
+        <span class="label label-info pull-right"></span>
+
+        <div class="row-fluid" data-height="0">
+          <div class="span12 tree-elem tree-top" data-id={{n0.id}}>
+            <h4 class="node-head">{{{n0.head}}}</h4>
+            <code class="node-regex">{{{n0.regex}}}</code>
+            <p class="node-desc">{{{n0.desc}}}</p>
+            <span class="label label-info pull-right"></span>
+          </div>
+        </div>
+
+        <div class="row-fluid" data-height="1">
+          <div class="span6 tree-elem tree-mid" data-id={{n1.id}}>
+            <h4 class="node-head">{{{n1.head}}}</h4>
+            <code class="node-regex">{{{n1.regex}}}</code>
+            <p class="node-desc">{{{n1.desc}}}</p>
+            <span class="label label-info pull-right"></span>
+            <span class="on-edit">
+              <button class="btn btn-mini node-modify"
+                      data-add-text='<i class="icon-plus-sign"></i> Add'
+                      data-rem-text='<i class="icon-minus-sign"></i> Delete'>
+                {{#if n3}}
+                <i class="icon-minus-sign"></i> Delete
+                {{else}}
+                <i class="icon-plus-sign"></i> Add
+                {{/if}}
+              </button>
+            </span>
+          </div>
+          <div class="span6 tree-elem tree-mid" data-id={{n2.id}}>
+            <h4 class="node-head">{{{n2.head}}}</h4>
+            <code class="node-regex">{{{n2.regex}}}</code>
+            <p class="node-desc">{{{n2.desc}}}</p>
+            <span class="label label-info pull-right"></span>
+            <span class="on-edit">
+              <button class="btn btn-mini node-modify"
+                      data-add-text='<i class="icon-plus-sign"></i> Add'
+                      data-rem-text='<i class="icon-minus-sign"></i> Delete'>
+                {{#if n5}}
+                <i class="icon-minus-sign"></i> Delete
+                {{else}}
+                <i class="icon-plus-sign"></i> Add
+                {{/if}}
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="row-fluid" data-height="2">
+
+          {{#if n3}}
+          <div class="span3 tree-elem tree-bot" data-id={{n3.id}}>
+            <h4 class="node-head">{{{n3.head}}}</h4>
+            <p class="node-desc">{{{n3.desc}}}</p>
+          </div>
+          {{else}}
+          <div class="span3 tree-elem tree-elem-empty tree-bot"
+               data-id="3">
+            <h4 class="node-head">Edit to add question</h4>
+            <p class="node-desc">Edit to add a brief description</p>
+          </div>
+          {{/if}}
+
+          {{#if n4}}
+          <div class="span3 tree-elem tree-bot" data-id={{n4.id}}>
+            <h4 class="node-head">{{{n4.head}}}</h4>
+            <p class="node-desc">{{{n4.desc}}}</p>
+          </div>
+          {{else}}
+          <div class="span3 tree-elem tree-elem-empty tree-bot"
+               data-id="4">
+            <h4 class="node-head">Edit to add question</h4>
+            <p class="node-desc">Edit to add a brief description</p>
+          </div>
+          {{/if}}
+
+          {{#if n5}}
+          <div class="span3 tree-elem tree-bot" data-id={{n5.id}}>
+            <h4 class="node-head">{{{n5.head}}}</h4>
+            <p class="node-desc">{{{n5.desc}}}</p>
+          </div>
+          {{else}}
+          <div class="span3 tree-elem tree-elem-empty tree-bot"
+               data-id="5">
+            <h4 class="node-head">Edit to add question</h4>
+            <p class="node-desc">Edit to add a brief description</p>
+          </div>
+          {{/if}}
+
+          {{#if n6}}
+          <div class="span3 tree-elem tree-bot" data-id={{n6.id}}>
+            <h4 class="node-head">{{{n6.head}}}</h4>
+            <p class="node-desc">{{{n6.desc}}}</p>
+          </div>
+          {{else}}
+          <div class="span3 tree-elem tree-elem-empty tree-bot"
+               data-id="6">
+            <h4 class="node-head">Edit to add question</h4>
+            <p class="node-desc">Edit to add a brief description</p>
+          </div>
+          {{/if}}
+        </div>
+        {{/with}}
+      </div>
+    </script>
+    {% endraw %}
+
+    {% raw %}
+    <script type="text/template" id="tmpl-tlist">
+      <h3>{{desc}}</h3>
+      <ul>
+        {{#each tlist}}
+        <li>
+          <a href="/tree/{{id}}">{{{head}}}</a>
+          <small>{{{desc}}}</small>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+    {% endraw %}
+
+   <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.js"></script>
+    <script src="/bs/js/bootstrap.js"></script>
+
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/json2.js"></script>
+    <script src="/js/backbone-min.js"></script>
+
+    <script src="/js/handlebars.js"></script>
+    {# <!-- <script src="/js/holder.js"></script> --> #}
+    {# <!-- <script src="/d3/d3.v3.js"></script> --> #}
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39685753-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+    <script src="/js/bisect-main.js"></script>
+
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+      var this_tree = {{thistree}};
+      {# mytlist = new TreeListView({el:"#mytlist", model: new TreeListModel({{mytlist}})}); #}
+      recenttlist = new TreeListView({el:"#recenttlist", model: new TreeListModel({{recenttlist}})});
+      mytreemodel = new TreeModel(this_tree !== null ?this_tree:new_tree);
+      mytreeview = new TreeView({el:"#t-tmpl-r3-test", model: mytreemodel});
+      myroute = new BisectRouter();
+      Backbone.history.start({pushState: true});
+      $("#about-btn").click(_ScrollTo("#about"));
+      $("#ci-btn").click(_ScrollTo("#ci-seg"));
+      $("#dbg-btn").click(_ScrollTo("#t-tmpl-r3-test"));
+      });
+    </script>
+  </body>
+</html>

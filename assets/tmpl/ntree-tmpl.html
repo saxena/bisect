@@ -1,0 +1,49 @@
+<script type="text/template" id="tmpl-ntree">
+  <div id={{tree.id}} class="tree">
+    <h2>
+      <span>{{tree.head}} </span>
+      <small>{{tree.desc}}</small>
+    </h2>
+
+    {{#with nodes}}
+    <div class="row-fluid">
+      <div class="span12 ntree-elem tree-top" data-id="n0">
+        <h4>{{n0.head}}</h4>
+        <p>{{n0.desc}}</p>
+
+        <div class="row-fluid">
+          <div class="span6 ntree-elem tree-mid" data-id="n1">
+            <h4>{{n1.head}}</h4>
+            <p>{{n1.desc}}</p>
+            <div class="row-fluid">
+              <div class="span6 ntree-elem tree-bot" data-id="n3">
+                <h4>{{n3.head}}</h4>
+                <p>{{n3.desc}}</p>
+              </div>
+              <div class="span6 ntree-elem tree-bot" data-id="n4">
+                <h4>{{n4.head}}</h4>
+                <p>{{n4.desc}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="span6 ntree-elem tree-mid" data-id="n2">
+            <h4>{{n2.head}}</h4>
+            <p>{{n2.desc}}</p>
+            <div class="row-fluid">
+              <div class="span6 ntree-elem tree-bot" data-id="n5">
+                <h4>{{n5.head}}</h4>
+                <p>{{n5.desc}}</p>
+              </div>
+              <div class="span6 ntree-elem tree-bot" data-id="n6">
+                <h4>{{n6.head}}</h4>
+                <p>{{n6.desc}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/with}}
+  </div>
+</script>
