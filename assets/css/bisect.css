@@ -1,0 +1,132 @@
+body {
+  background-color: #F0FFFF; /* fallback color if gradients are not supported */
+  background-image: -webkit-linear-gradient(top left, #F0FFFF, white); /* For Chrome and Safari */
+  background-image:    -moz-linear-gradient(top left, #F0FFFF, white); /* For old Fx (3.6 to 15) */
+  background-image:     -ms-linear-gradient(top left, #F0FFFF, white); /* For pre-releases of IE 10*/
+  background-image:      -o-linear-gradient(top left, #F0FFFF, white); /* For old Opera (11.1 to 12.0) */
+  background-image:         linear-gradient(top left, #F0FFFF, white); /* Standard syntax; must be last */
+/*background-image:         linear-gradient(top left, #D5DDFF, #CFBAF1);*/
+}
+
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 768px;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  margin: 60px 0;
+  text-align: center;
+}
+.jumbotron h1 {
+  font-size: 72px;
+  line-height: 1;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Missing from BS */
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Bisect Specific CSS*/
+
+.tree-container {
+  border-top: 2px solid #DDD;
+  border-bottom: 2px solid #DDD;
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+
+.seg-container:hover {
+  border-top: 2px dashed #DDD;
+  border-bottom: 2px dashed #DDD;
+}
+
+.seg-container {
+  border-top: 2px solid #DDD;
+  border-bottom: 2px solid #DDD;
+  border-radius: 10px;
+  margin: 30px 0;
+  padding: 10px;
+}
+
+[contenteditable=true]:hover:not(:focus) {
+  outline: 1px dotted;
+}
+
+.node-desc {
+  margin: 10px 0;
+}
+
+/* Turn on Visibility */
+.on-edit {
+  display: none;
+}
+
+/* Node Formatting */
+.tree-elem-empty {
+  opacity:0;
+  cursor:default;
+}
+
+/* Tree Formatting */
+.tree-elem {
+  -webkit-box-shadow: 3px 3px 3px #1c1c1c;
+  box-shadow: 3px 3px 3px #1c1c1c;
+  border-radius:3px;
+  margin-top:4px;
+  padding:4px;
+  text-align:center;
+  background-color:#aaa;
+}
+
+/* Raph icons */
+@font-face {
+  font-family: 'RaphaelIcons';
+  src: url('/rapico/raphaelicons-webfont.eot');
+  src: local('☺'), url('/rapico/raphaelicons-webfont.woff') format('woff'), url('/rapico/raphaelicons-webfont.ttf') format('truetype'), url('/rapico/raphaelicons-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.rapico {
+  font-weight: normal;
+  font-style: normal;
+  line-height: normal;
+  font-family: 'RaphaelIcons';
+  font-size: 6em;
+  position: relative;
+}
+
+/* Tree Coloring */
+/*
+  .tree-top {
+  background-color:#ccc;
+  }
+
+.tree-mid {
+background-color:#aaa;
+}
+
+.tree-bot {
+background-color:#777;
+}
+*/
