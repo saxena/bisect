@@ -281,12 +281,12 @@ function _ScrollTo(to){
     };
 };
 
-var DnD = Backbone.View.extend({
+var DnDView = Backbone.View.extend({
     initialize: function () {
-        this.el.bind("dragover", _.bind(this._dragOverEvent, this));
-        this.el.bind("dragenter", _.bind(this._dragEnterEvent, this));
-        this.el.bind("dragleave", _.bind(this._dragLeaveEvent, this));
-        this.el.bind("drop", _.bind(this._dropEvent, this));
+        this.$el.bind("dragover", _.bind(this._dragOverEvent, this));
+        this.$el.bind("dragenter", _.bind(this._dragEnterEvent, this));
+        this.$el.bind("dragleave", _.bind(this._dragLeaveEvent, this));
+        this.$el.bind("drop", _.bind(this._dropEvent, this));
         this._draghoverClassAdded = false;
     },
 
@@ -317,7 +317,7 @@ var DnD = Backbone.View.extend({
         // stops the browser from redirecting
         if (e.stopPropagation) e.stopPropagation();
 
-        if (this._draghoverClassAdded) this.el.removeClass("draghover");
+        if (this._draghoverClassAdded) this.$el.removeClass("draghover");
 
         this.drop(data, e.dataTransfer, e);
     },
@@ -332,17 +332,19 @@ var DnD = Backbone.View.extend({
     dragOver: function (data, dataTransfer, e) {
         // optionally override me and set dataTransfer.dropEffect,
         // return false if the data is not droppable
-        this.el.addClass("draghover");
+        this.$el.addClass("draghover");
         this._draghoverClassAdded = true;
     },
 
     dragLeave: function (data, dataTransfer, e) {
         // optionally override me
-        if (this._draghoverClassAdded) this.el.removeClass("draghover");
+        if (this._draghoverClassAdded) this.$el.removeClass("draghover");
     },
 
     // overide me! if the draggable class returned some data on
     // 'dragStart' it will be the first argument
-    drop: function (data, dataTransfer, e) {}
+    drop: function (data, dataTransfer, e) {
+        console.log("dropped");
+    }
 
 })
