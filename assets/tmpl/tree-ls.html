@@ -20,8 +20,10 @@
 
 {% block onready_js %}
     <script type="text/javascript">
+      var mydndlist;
       jQuery(document).ready(function(){
       treelist = new TreeListView({el:"#treelist", model: new TreeListModel({{treelist}})});
+      mydndlist = new DnDView({el:"#treelist"});
       myroute = new BisectRouter();
       Backbone.history.start({pushState: true});
       $("#about-btn").click(_ScrollTo("#about"));

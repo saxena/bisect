@@ -105,7 +105,7 @@ def RenderTreeTmpl(u,u_url,tree,t_list):
 
 def RenderTreeLsTmpl(u,u_url,tree_list):
     sep = (',',':')
-    treelist = {"desc":"Bisection List","tlist":tree_list}
+    treelist = {"desc":"Drag-n-Drop Log files to triage","tlist":tree_list}
     return tree_ls_tmpl.render({
             "treelist": json.dumps(treelist,separators=sep),
             "user": u.nickname() if u else None,
