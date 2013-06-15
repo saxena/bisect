@@ -24,8 +24,8 @@ def GetBTJson(tree):
     return t
 
 ####################
-def ListBT():
-    tlist = BisectionTree.all().filter('is_public =', True).fetch(limit=10)
+def ListBT(type=None):
+    tlist = BisectionTree.all().filter('is_public =', True).fetch(limit=100)
     return [GetBTDesc(t) for t in tlist]
 
 def AddBT(user, req):
@@ -95,29 +95,35 @@ def GetUserData():
 
 def RenderTreeTmpl(u,u_url,tree,t_list):
     sep = (',',':')
-    recenttlist = {"desc":"Newest Bisections","tlist":t_list}
+    treelist = {"desc":"Newest Bisections","tlist":t_list}
     return tree_tmpl.render({
         "thistree": json.dumps(tree,separators=sep),
-        "recenttlist": json.dumps(recenttlist,separators=sep),
+        "treelist": json.dumps(treelist,separators=sep),
         "user": u.nickname() if u else None,
         "uurl": u_url
     })
 
+def RenderTreeLsTmpl(u,u_url,tree_list):
+    sep = (',',':')
+    treelist = {"desc":"Bisection List","tlist":tree_list}
+    return tree_ls_tmpl.render({
+            "treelist": json.dumps(treelist,separators=sep),
+            "user": u.nickname() if u else None,
+            "uurl": u_url
+            })
+
+
 ####################
+class TreeListHandler(webapp2.RequestHandler):
+    def get(self, tree_type):
+        u,u_url = GetUserData()
+        self.response.out.write(RenderTreeLsTmpl(u,u_url,ListBT(tree_type)))
+
+
 class NewTreeHandler(webapp2.RequestHandler):
     def get(self):
         u,u_url = GetUserData()
         self.response.out.write(RenderTreeTmpl(u,u_url,None,ListBT()))
-
-    def post(self):
-        u,u_url = GetUserData()
-        status = None
-        if UserCanAddBT(u):
-            tree_id = AddBT(u, self.request)
-            self.response.status_int = 202
-            self.response.write(json.dumps({"id":str(tree_id)}))
-        else:
-            self.response.status_int = 401
 
 class TreeHandler(webapp2.RequestHandler):
     def get(self, tree_id):
@@ -136,6 +142,16 @@ class TreeHandler(webapp2.RequestHandler):
             self.response.write(json.dumps(status))
         else:
             self.response.status_int = 403
+
+    def post(self, tree_id):
+        u,u_url = GetUserData()
+        status = None
+        if UserCanAddBT(u):
+            tree_id = AddBT(u, self.request)
+            self.response.status_int = 202
+            self.response.write(json.dumps({"id":str(tree_id)}))
+        else:
+            self.response.status_int = 401
 
     def delete(self, tree_id):
         u = users.get_current_user()
@@ -156,8 +172,8 @@ class BisectHandler(webapp2.RequestHandler):
             self.response.status_int = 403
 
 app = webapp2.WSGIApplication([
-        (r'/tree/(\w+)', TreeHandler),
-        (r'/tree', NewTreeHandler),
+        (r'/tree/(\w*)', TreeHandler),
+        (r'/ls/(\w*)', TreeListHandler),
         (r'/bisect/(\w+)',BisectHandler),
         ('/', NewTreeHandler),
         ], debug=True)
@@ -166,6 +182,8 @@ jenv = jinja2.Environment(loader=jinja2.FileSystemLoader(
         os.path.join(os.path.dirname(__file__), 'assets', 'tmpl')))
 
 tree_tmpl = jenv.get_template('first-banner.html')
+
+tree_ls_tmpl = jenv.get_template('tree-ls.html')
 
 def main():
     logging.getLogger().setLevel(logging.DEBUG)

@@ -1,0 +1,31 @@
+{% extends "base-internal.html" %}
+{% block market_splash %}
+      <div class="media jumbotron tree-container">
+        <a class="pull-left"
+           href="http://en.wikipedia.org/wiki/Aikido" target="_blank">
+          <img class="media-object img-rounded" src="/img/morihei.jpg"
+               alt="morihei" style="width: 33%; height: 33%;">
+        </a>
+        <div class="media-body">
+          <h2 class="media-heading">Bisect</h2>
+          <p class="muted">&mdash;verb: to debug using the process of
+          elimination.</p>
+        </div> <!-- media-body-->
+      </div> <!-- media-->
+{% endblock market_splash %}
+
+{% block content %}
+      <div id="treelist" class="seg-container"></div>
+{%endblock content %}
+
+{% block onready_js %}
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+      treelist = new TreeListView({el:"#treelist", model: new TreeListModel({{treelist}})});
+      myroute = new BisectRouter();
+      Backbone.history.start({pushState: true});
+      $("#about-btn").click(_ScrollTo("#about"));
+      });
+    </script>
+{%endblock onready_js%}
+

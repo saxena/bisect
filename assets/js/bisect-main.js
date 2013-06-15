@@ -79,7 +79,7 @@ var BisectRouter = Backbone.Router.extend({
 
 var TreeModel = Backbone.Model.extend({
 
-    urlRoot:"/tree",
+    urlRoot:"/tree/",
 
 });
 
