@@ -73,6 +73,15 @@ var new_tree =
    }
 };
 
+function _ScrollTo(to){
+    var to_pos = $(to).offset().top;
+    var hb_sel = $('html, body');
+    return function(){
+        hb_sel.animate({scrollTop:to_pos},400,"swing");
+        return false;
+    };
+};
+
 var BisectRouter = Backbone.Router.extend({
 
 });
@@ -261,7 +270,9 @@ var TreeListModel = Backbone.Model.extend({
 var TreeListView = Backbone.View.extend({
 
     initialize: function(){
+        this.$el.bind("bisect", _.bind(this._BisectEvent, this));
         this.tmpl_tlist = Handlebars.compile($("#tmpl-tlist").html());
+        this.tmpl_telem = Handlebars.compile($("#tmpl-telem").html());
         this.render();
     },
 
@@ -270,16 +281,26 @@ var TreeListView = Backbone.View.extend({
         return this;
     },
 
-});
+    _BisectUpdate: function(data, status, jqXHR){
+        var tsel = ".tree-elem[data-id|="+this.id+"]";
+        this.view.$(tsel).html(this.view.tmpl_telem(data));
+        console.log("POST success");
+    },
 
-function _ScrollTo(to){
-    var to_pos = $(to).offset().top;
-    var hb_sel = $('html, body');
-    return function(){
-        hb_sel.animate({scrollTop:to_pos},400,"swing");
-        return false;
-    };
-};
+    _BisectEvent: function(event, data){
+        console.log(data.log_text.length+" bytes read");
+        _.each(this.model.attributes.tlist, function(e,i,a){
+            jQuery.ajax({url: "/bisect/"+e.id,
+                         type: "POST",
+                         data: data.log_text,
+                         success: this._BisectUpdate,
+                         dataType: "json",
+                         view: this,
+                         id: e.id});
+        }, this);
+    },
+
+});
 
 var DnDView = Backbone.View.extend({
     initialize: function () {
@@ -344,7 +365,24 @@ var DnDView = Backbone.View.extend({
     // overide me! if the draggable class returned some data on
     // 'dragStart' it will be the first argument
     drop: function (data, dataTransfer, e) {
-        console.log("dropped");
-    }
+        var reader = new FileReader();
+        reader.onloadend = (this.fileloadend)(this);
 
-})
+        console.log("dropped");
+
+        if (dataTransfer.files.length >= 1)
+            reader.readAsText(dataTransfer.files[0]);
+        else
+            console.log("no files selected");
+    },
+
+    fileloadend: function(view){
+        return function(e){
+            if(e.target.readyState == FileReader.DONE)
+                view.$el.trigger("bisect", {log_text:e.target.result});
+            else
+                console.log("read error");
+        };
+    },
+
+});

@@ -201,14 +201,23 @@
     {% raw %}
     <script type="text/template" id="tmpl-tlist">
       <h3>{{desc}}</h3>
-      <ul>
-        {{#each tlist}}
-        <li>
+      {{#each tlist}}
+      <div class="row-fluid">
+        <div class="span3 tree-elem" data-id={{id}}>
+        </div>
+        <div class="span9">
           <a href="/tree/{{id}}">{{{head}}}</a>
           <small>{{{desc}}}</small>
-        </li>
-        {{/each}}
-      </ul>
+        </div>
+      </div>
+      {{/each}}
+    </script>
+    {% endraw %}
+
+    {% raw %}
+    <script type="text/template" id="tmpl-telem">
+        <h4 class="node-head">{{{head}}}</h4>
+        <p class="node-desc">{{{desc}}}</p>
     </script>
     {% endraw %}
 
