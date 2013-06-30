@@ -270,7 +270,7 @@ var TreeListModel = Backbone.Model.extend({
 var TreeListView = Backbone.View.extend({
 
     initialize: function(){
-        this.$el.bind("bisect", _.bind(this._BisectEvent, this));
+        this.$el.bind("bisect", _.bind(this._BisectPost, this));
         this.tmpl_tlist = Handlebars.compile($("#tmpl-tlist").html());
         this.tmpl_telem = Handlebars.compile($("#tmpl-telem").html());
         this.render();
@@ -287,7 +287,7 @@ var TreeListView = Backbone.View.extend({
         console.log("POST success");
     },
 
-    _BisectEvent: function(event, data){
+    _BisectPost: function(event, data){
         console.log(data.log_text.length+" bytes read");
         _.each(this.model.attributes.tlist, function(e,i,a){
             jQuery.ajax({url: "/bisect/"+e.id,
