@@ -96,6 +96,11 @@ body {
   text-align:center;
   background-color:#aaa;
 }
+/*
+code:before{
+  content:'[:regex:]'
+}
+*/
 
 /* Raph icons */
 @font-face {
