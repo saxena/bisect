@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block market_splash %}
-      <div class="media jumbotron tree-container">
+      <div class="media jumbotron">
         {#
         <a class="pull-left"
            href="http://en.wikipedia.org/wiki/Aikido" target="_blank">
@@ -10,21 +10,23 @@
         #}
 
         <div class="media-body">
-          <!--
+          {#
           <h2 class="media-heading">Bisect</h2>
           <p class="muted">&mdash;verb: to debug using the process of
-          elimination.</p>
-          -->
-          <h2 class="media-heading">Debugging is repetitive and tedious</h2>
-          <p class="lead" style="font-size:25px;">Your manual triage efforts are no
+            elimination.</p>
+          #}
+
+          <h1 class="media-heading">Debugging is repetitive and tedious</h1>
+          <p class="bisect-lead">Your manual triage efforts are no
           match for the volume of failures that occur in a complex
           continuously integrated system sourcing from hundreds of
           developers.</p>
 
-          <p class="lead" style="font-size:25px;text-align:left;">
-            <strong>1.</strong> Use Bisect to create a decision tree to triage an issue just once.<br>
-            <strong>2.</strong> Reuse decision tree by piping incident logs for known failures.<br>
-            <strong>3.</strong> Never perform a mind numbing debug again.<br>
+          <p class="bisect-lead text-left">
+            <strong>&rarr;</strong> Use Bisect to create a decision tree to triage an issue just once.<br>
+            <strong>&rarr;</strong> Reuse decision trees by piping
+            incident logs to test for known failures.<br>
+            <strong>&rarr;</strong> Never perform a mind numbing debug again.<br>
           </p>
 
           <div class="row-fluid" style="border-top:2px dotted #DDD; padding-top:20px">
@@ -33,7 +35,8 @@
               <div class="media">
                 <span class="media-object rapico">Ç</span>
                 <div class="media-body">
-                  <p class="lead"><strong>Debug</strong><br>
+                  <h2>Debug</h2>
+                  <p class="bisect-lead">
                   Create decision trees to codify repetitive triage steps<br>
                   <a id="dbg-btn" href="#treeview">Scroll to example</a></p>
                 </div>
@@ -44,7 +47,8 @@
               <div class="media">
                 <span class="media-object rapico">Ñ</span>
                 <div class="media-body">
-                  <p class="lead"><strong>Automate</strong><br>
+                  <h2>Automate</h2>
+                  <p class="bisect-lead">
                   Tap into Continuous Integration by using POST API<br>
                   <a id="ci-btn" href="#ci-seg">Scroll to example</a></p>
                 </div>
@@ -55,7 +59,8 @@
               <div class="media">
                 <span class="media-object rapico">K</span>
                 <div class="media-body">
-                  <p class="lead"><strong>Communicate</strong><br>
+                  <h2>Communicate</h2>
+                  <p class="bisect-lead">
                   Document design intent for benefit of Developers, QA and Customer Engineering.</p>
                 </div>
               </div>
